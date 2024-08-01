@@ -1,0 +1,11 @@
+* {
+    bg-col: #ffdfd6;
+    input-bg: #fdf0ed;
+    text-col: #353535;
+    select-col: #353535;
+    border-col: #ff3ea5;
+    prompt-col: #911384;
+    elem-col: #ffdfd6;
+    selected-elem-col: #ff5eae;
+    bg-col-light: #dfdfdf;
+}

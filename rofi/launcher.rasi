@@ -10,7 +10,7 @@ configuration{
     display-drun: " Search apps";
 }
 
-@theme "gruvbox"
+@theme "pink-rose"
 
 window {
     height: 500px;

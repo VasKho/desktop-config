@@ -4,7 +4,7 @@ configuration {
     kb-accept-entry: "";
 }
 
-@theme "gruvbox"
+@theme "pink-rose"
 
 * {
     font:                        "Hack Nerd Font 25";
