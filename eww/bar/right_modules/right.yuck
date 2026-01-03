@@ -1,0 +1,99 @@
+;; Reveal variables
+(defvar cal-rev false)
+(defvar time-rev false)
+(defvar micro-rev true)
+
+;; Value variables
+(defvar backlight-value 0)
+(defvar volume-value 0)
+
+;; Style variables
+(defvar wifi-color "")
+(defvar volume-color "")
+(defvar cpu-animation "")
+(defvar memory-animation "")
+(defvar battery-animation "")
+
+;; Poll valiables
+(defpoll wifi-status :initial "./scripts/wifi" :interval "2s" "./scripts/wifi")
+(defpoll cpu :initial "./scripts/cpu" :interval "10s" "./scripts/cpu")
+(defpoll memory :initial "./scripts/memory" :interval "10s" "./scripts/memory")
+(defpoll battery :initial "./scripts/battery" :interval "3s" "./scripts/battery")
+(defpoll hour :initial "date +'%H'" :interval "1s" "date +'%H'")
+(defpoll minute :initial "date +'%M'" :interval "5s" "date +'%M'")
+(defpoll day :initial "date +'%A'" :interval "1h" "date +'%A'")
+(defpoll year :initial "date +'%Y'" :interval "1h" "date +'%Y'")
+(defpoll month :initial "date +'%B'" :interval "1h" "date +'%B'")
+(defpoll date :initial "date +'%d'" :interval "2h" "date +'%d'")
+(defpoll month-year :initial "date +'%B %Y'" :interval "24h" "date +'%B %Y'")
+
+(defwidget right []
+  (box :halign "end" :class "right_modules" :space-evenly false
+       (cpu)
+       (memory)
+       (battery)
+       (wifi)
+       (sound)
+       (micro)
+       (backlight)
+       (tray)
+       (clock-module)))
+
+(defwidget cpu []
+  (button :class { cpu-animation != "" ? "${cpu-animation}" : "button" } :tooltip "SHREK"
+	  :onclick "swaymsg exec '$term -a \"btop\" -e btop -p 0'" "󰘚 ${cpu}%"))
+
+(defwidget memory []
+  (button :class { memory-animation != "" ? "${memory-animation}" : "button" }
+	  :onclick "swaymsg exec '$term -a \"btop\" -e btop -p 0'" " ${memory}%"))
+
+(defwidget battery []
+  (label :class { battery-animation != "" ? "${battery-animation}" : "button" }
+	 :text "${battery}"))
+
+(defwidget wifi []
+  (button :style { wifi-color != "" ? "color: ${wifi-color}" : "" } :class "wifi"
+	  :onclick "swaymsg exec '$term -a \"nmtui\" -e nmtui'" "${wifi-status}"))
+
+(defwidget sound []
+  (eventbox
+   :style { volume-color != "" ? "color: ${volume-color}" : "" } :class "volume-box"
+   :onhover "./scripts/audio"
+   :onscroll "./scripts/audio {} 1"
+   (box :space-evenly false :orientation "h"
+	(label :class "button" :text "${volume-value}"))))
+
+(defwidget micro []
+  (revealer
+   :transition "slideleft"
+   :reveal micro-rev
+   :duration "0.43s"
+   (label :class "button" :text "")))
+
+(defwidget backlight []
+  (eventbox
+   :class "backlight-box"
+   :onscroll "./scripts/backlight {} 2"
+   (box :space-evenly false :orientation "h"
+	(label :class "button" :text "${backlight-value}"))))
+
+(defwidget tray []
+  (systray
+   :class "tray"
+   :spacing "10"
+   :orientation "h"
+   :icon-size "22"))
+
+(defwidget clock-module []
+  (eventbox
+   :class "date-time"
+   :onhover "${eww} update time-rev=true"
+   :onhoverlost "${eww} update time-rev=false"
+   :onclick {cal-rev ? "${eww} update cal-rev=false && ${eww} close calendar" : "${eww} open calendar && ${eww} update cal-rev=true"}
+   (box :space-evenly false :orientation "h"
+	(label :class "time-btn" :text "${hour}:${minute}")
+	(revealer
+	 :transition "slideleft"
+	 :reveal time-rev
+	 :duration "0.43s"
+	 (label :class "date-btn" :text "${day} ${date} ${month} ${year}")))))

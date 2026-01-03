@@ -1,0 +1,9 @@
+(defvar workspace "")
+
+(defwidget left []
+  (box :orientation "h" :space-evenly false
+       (button :class "menu_btn" :onclick "swaymsg exec \\$menu" "")
+       (workspaces)))
+
+(defwidget workspaces []
+  (literal :content workspace))
