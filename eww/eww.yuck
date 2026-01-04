@@ -1,6 +1,3 @@
-;; Defines
-(defvar eww "eww -c ${EWW_INSTALL_DIR}")
-
 (include "./bar/bar.yuck")
 (include "./calendar/calendar.yuck")
 (include "./screenshot/screenshot.yuck")

@@ -1,0 +1,10 @@
+[package]
+name = "workspaces"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+async-std = { version = "1.13.2", features = ["attributes"] }
+futures-util = "0.3.31"
+swayipc = "4.0.0"
+swayipc-async = "3.0.0"

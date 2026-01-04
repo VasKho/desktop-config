@@ -1,7 +1,5 @@
 #!/bin/bash
 
-eww="eww -c ${EWW_INSTALL_DIR}"
-
 battery() {
     BAT=`ls /sys/class/power_supply | grep BAT | head -n 1`
     cat /sys/class/power_supply/${BAT}/capacity
@@ -52,5 +50,5 @@ elif (( ${value} <= 30 )); then
     class="button-warning"
 fi
 
-${eww} update battery-animation=${class}
+eww update battery-animation=${class}
 echo ${output}

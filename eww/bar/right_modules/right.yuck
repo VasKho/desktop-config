@@ -1,7 +1,7 @@
 ;; Reveal variables
 (defvar cal-rev false)
 (defvar time-rev false)
-(defvar micro-rev true)
+(defvar micro-rev false)
 
 ;; Value variables
 (defvar backlight-value 0)
@@ -15,17 +15,22 @@
 (defvar battery-animation "")
 
 ;; Poll valiables
-(defpoll wifi-status :initial "./scripts/wifi" :interval "2s" "./scripts/wifi")
-(defpoll cpu :initial "./scripts/cpu" :interval "10s" "./scripts/cpu")
-(defpoll memory :initial "./scripts/memory" :interval "10s" "./scripts/memory")
-(defpoll battery :initial "./scripts/battery" :interval "3s" "./scripts/battery")
-(defpoll hour :initial "date +'%H'" :interval "1s" "date +'%H'")
-(defpoll minute :initial "date +'%M'" :interval "5s" "date +'%M'")
-(defpoll day :initial "date +'%A'" :interval "1h" "date +'%A'")
-(defpoll year :initial "date +'%Y'" :interval "1h" "date +'%Y'")
-(defpoll month :initial "date +'%B'" :interval "1h" "date +'%B'")
-(defpoll date :initial "date +'%d'" :interval "2h" "date +'%d'")
-(defpoll month-year :initial "date +'%B %Y'" :interval "24h" "date +'%B %Y'")
+(defpoll wifi-status
+	 :initial { get_env("WIFI_MONITOR") }
+	 :interval "2s"
+	 { get_env("WIFI_MONITOR") })
+(defpoll cpu
+	 :initial { get_env("CPU_MONITOR") }
+	 :interval "7s"
+	 { get_env("CPU_MONITOR") })
+(defpoll memory
+	 :initial { get_env("MEMORY_MONITOR") }
+	 :interval "7s"
+	 { get_env("MEMORY_MONITOR") })
+(defpoll battery
+	 :initial { get_env("BATTERY_MONITOR") }
+	 :interval "3s"
+	 { get_env("BATTERY_MONITOR") })
 
 (defwidget right []
   (box :halign "end" :class "right_modules" :space-evenly false
@@ -40,26 +45,35 @@
        (clock-module)))
 
 (defwidget cpu []
-  (button :class { cpu-animation != "" ? "${cpu-animation}" : "button" } :tooltip "SHREK"
-	  :onclick "swaymsg exec '$term -a \"btop\" -e btop -p 0'" "󰘚 ${cpu}%"))
+  (tooltip
+   (label :text { jq(EWW_CPU.cores, "[.[] | \"\\(.core):\\t\\(.usage)\"] | join(\"\\n\")", "r") })
+   (button :class { cpu-animation != "" ? "${cpu-animation}" : "button" }
+	   :onclick { get_env("PROFILER") }
+	   "󰘚 ${cpu}%")))
 
 (defwidget memory []
-  (button :class { memory-animation != "" ? "${memory-animation}" : "button" }
-	  :onclick "swaymsg exec '$term -a \"btop\" -e btop -p 0'" " ${memory}%"))
+  (tooltip
+   (label :text { formatbytes(floor(EWW_RAM.used_mem), false, "iec") })
+   (button :class { memory-animation != "" ? "${memory-animation}" : "button" }
+	   :onclick { get_env("PROFILER") }
+	   " ${memory}%")))
 
 (defwidget battery []
   (label :class { battery-animation != "" ? "${battery-animation}" : "button" }
 	 :text "${battery}"))
 
 (defwidget wifi []
-  (button :style { wifi-color != "" ? "color: ${wifi-color}" : "" } :class "wifi"
-	  :onclick "swaymsg exec '$term -a \"nmtui\" -e nmtui'" "${wifi-status}"))
+  (button :style { wifi-color != "" ? "color: ${wifi-color}" : "" }
+	  :class "wifi"
+	  :onclick { get_env("NETWORK") }
+	  "${wifi-status}"))
 
 (defwidget sound []
   (eventbox
-   :style { volume-color != "" ? "color: ${volume-color}" : "" } :class "volume-box"
-   :onhover "./scripts/audio"
-   :onscroll "./scripts/audio {} 1"
+   :style { volume-color != "" ? "color: ${volume-color}" : "" }
+   :class "volume-box"
+   :onhover { get_env("VOLUME_MONITOR") }
+   :onscroll "${get_env(\"VOLUME_MONITOR\")} {} 1"
    (box :space-evenly false :orientation "h"
 	(label :class "button" :text "${volume-value}"))))
 
@@ -73,7 +87,8 @@
 (defwidget backlight []
   (eventbox
    :class "backlight-box"
-   :onscroll "./scripts/backlight {} 2"
+   :onhover { get_env("BACKLIGHT_MONITOR") }
+   :onscroll "${get_env(\"BACKLIGHT_MONITOR\")} {} 2"
    (box :space-evenly false :orientation "h"
 	(label :class "button" :text "${backlight-value}"))))
 
@@ -87,13 +102,15 @@
 (defwidget clock-module []
   (eventbox
    :class "date-time"
-   :onhover "${eww} update time-rev=true"
-   :onhoverlost "${eww} update time-rev=false"
-   :onclick {cal-rev ? "${eww} update cal-rev=false && ${eww} close calendar" : "${eww} open calendar && ${eww} update cal-rev=true"}
+   :onhover "${EWW_CMD} update time-rev=true"
+   :onhoverlost "${EWW_CMD} update time-rev=false"
+   :onclick {cal-rev ?
+	     "${EWW_CMD} update cal-rev=false && ${EWW_CMD} close calendar"
+	     : "${EWW_CMD} open calendar && ${EWW_CMD} update cal-rev=true"}
    (box :space-evenly false :orientation "h"
-	(label :class "time-btn" :text "${hour}:${minute}")
+	(label :class "time-btn" :text { formattime(EWW_TIME, "%H:%M") })
 	(revealer
 	 :transition "slideleft"
 	 :reveal time-rev
 	 :duration "0.43s"
-	 (label :class "date-btn" :text "${day} ${date} ${month} ${year}")))))
+	 (label :class "date-btn" :text { formattime(EWW_TIME, "%A %d %B %Y") })))))

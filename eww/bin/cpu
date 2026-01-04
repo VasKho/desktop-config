@@ -1,7 +1,5 @@
 #!/bin/bash
 
-eww="eww -c ${EWW_INSTALL_DIR}"
-
 ## Files and Data
 PREV_TOTAL=0
 PREV_IDLE=0
@@ -49,5 +47,5 @@ elif (( ${value} >= 60 )); then
     class="button-warning"
 fi
 
-${eww} update cpu-animation=${class}
+eww update cpu-animation=${class}
 echo ${value}

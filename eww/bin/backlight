@@ -1,7 +1,5 @@
 #!/bin/bash
 
-eww="eww -c ${EWW_INSTALL_DIR}"
-
 backlight() {
     cur_value=$(brightnessctl g)
     max_value=$(brightnessctl m)
@@ -49,4 +47,4 @@ icon() {
 value=$(backlight $1 $2)
 icon=$(icon $value)
 
-${eww} update backlight-value="${icon} ${value}%"
+eww update backlight-value="${icon} ${value}%"

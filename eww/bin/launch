@@ -2,16 +2,15 @@
 
 CONFIG_ROOT=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && cd .. && pwd)
 
-eww="eww -c ${EWW_INSTALL_DIR}"
-
 if [[ "${1}" == "start" ]]; then
-    ${eww} daemon
-    ${eww} open-many bar
-    nohup "${CONFIG_ROOT}/bin/workspaces" >&/dev/null &
+    if [[ -f "${CONFIG_ROOT}/.env" ]]; then
+	source "${CONFIG_ROOT}/.env"
+    fi
+    eww daemon
+    eww open-many bar
     "${CONFIG_ROOT}/scripts/audio"
     "${CONFIG_ROOT}/scripts/backlight"
     "${CONFIG_ROOT}/scripts/mic"
 elif [[ "${1}" == "stop" ]]; then
-    killall "${CONFIG_ROOT}/bin/workspaces"
     killall eww
 fi

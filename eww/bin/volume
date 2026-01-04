@@ -1,7 +1,5 @@
 #!/bin/bash
 
-eww="eww -c ${EWW_INSTALL_DIR}"
-
 toggle() {
     wpctl set-mute @DEFAULT_SINK@ toggle
 }
@@ -28,8 +26,8 @@ icon() {
     icon=""
     if [[ ${mute} == "MUTE" ]]; then
 	icon=""
-	${eww} update volume-color='#f26435'
-	${eww} update volume-value="${icon}"
+        eww update volume-color='#f26435'
+        eww update volume-value="${icon}"
 	exit 1
     else
 	if (( 70 < $1 && $1 <= 100 )); then
@@ -54,5 +52,5 @@ icon=$(icon $value)
 
 if [[ -z ${icon} ]]; then exit 0; fi
 
-${eww} update volume-color=''
-${eww} update volume-value="${icon}  ${value}%"
+eww update volume-color=''
+eww update volume-value="${icon}  ${value}%"

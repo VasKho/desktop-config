@@ -1,9 +1,15 @@
-(defvar workspace "")
+(deflisten workspace :initial `[]` { get_env("WS_MONITOR") })
 
 (defwidget left []
   (box :orientation "h" :space-evenly false
-       (button :class "menu_btn" :onclick "swaymsg exec \\$menu" "")
+       (button :class "menu_btn" :onclick { get_env("LAUNCHER") } "")
        (workspaces)))
 
+
 (defwidget workspaces []
-  (literal :content workspace))
+  (box
+   :class "workspaces" :space-evenly false :orientation "h" :vexpand true
+   (for ws in workspace
+	(button :class { ws[2] == true ? "ws_button_focused" : "ws_button" }
+		:onclick "${get_env(\"CHANGE_WS\")} ${ws[0]}"
+		`${ws[1]}`))))
