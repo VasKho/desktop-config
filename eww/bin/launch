@@ -8,9 +8,9 @@ if [[ "${1}" == "start" ]]; then
     fi
     eww daemon
     eww open-many bar
-    "${CONFIG_ROOT}/scripts/audio"
-    "${CONFIG_ROOT}/scripts/backlight"
-    "${CONFIG_ROOT}/scripts/mic"
+    "${CONFIG_ROOT}/bin/volume"
+    "${CONFIG_ROOT}/bin/backlight"
+    "${CONFIG_ROOT}/bin/mic"
 elif [[ "${1}" == "stop" ]]; then
     killall eww
 fi

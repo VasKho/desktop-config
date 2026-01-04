@@ -15,22 +15,10 @@
 (defvar battery-animation "")
 
 ;; Poll valiables
-(defpoll wifi-status
-	 :initial { get_env("WIFI_MONITOR") }
-	 :interval "2s"
-	 { get_env("WIFI_MONITOR") })
-(defpoll cpu
-	 :initial { get_env("CPU_MONITOR") }
-	 :interval "7s"
-	 { get_env("CPU_MONITOR") })
-(defpoll memory
-	 :initial { get_env("MEMORY_MONITOR") }
-	 :interval "7s"
-	 { get_env("MEMORY_MONITOR") })
-(defpoll battery
-	 :initial { get_env("BATTERY_MONITOR") }
-	 :interval "3s"
-	 { get_env("BATTERY_MONITOR") })
+(defpoll wifi-status :initial "./bin/wifi" :interval "5s" "./bin/wifi")
+(defpoll cpu :initial "./bin/cpu" :interval "7s" "./bin/cpu")
+(defpoll memory :initial "./bin/memory" :interval "7s" "./bin/memory")
+(defpoll battery :initial "./bin/battery" :interval "3s" "./bin/battery")
 
 (defwidget right []
   (box :halign "end" :class "right_modules" :space-evenly false
@@ -72,8 +60,8 @@
   (eventbox
    :style { volume-color != "" ? "color: ${volume-color}" : "" }
    :class "volume-box"
-   :onhover { get_env("VOLUME_MONITOR") }
-   :onscroll "${get_env(\"VOLUME_MONITOR\")} {} 1"
+   :onhover "./bin/volume"
+   :onscroll "./bin/volume {} 1"
    (box :space-evenly false :orientation "h"
 	(label :class "button" :text "${volume-value}"))))
 
@@ -87,8 +75,8 @@
 (defwidget backlight []
   (eventbox
    :class "backlight-box"
-   :onhover { get_env("BACKLIGHT_MONITOR") }
-   :onscroll "${get_env(\"BACKLIGHT_MONITOR\")} {} 2"
+   :onhover "./bin/backlight"
+   :onscroll "./bin/backlight {} 2"
    (box :space-evenly false :orientation "h"
 	(label :class "button" :text "${backlight-value}"))))
 

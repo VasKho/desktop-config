@@ -11,5 +11,5 @@
    :class "workspaces" :space-evenly false :orientation "h" :vexpand true
    (for ws in workspace
 	(button :class { ws[2] == true ? "ws_button_focused" : "ws_button" }
-		:onclick "${get_env(\"CHANGE_WS\")} ${ws[0]}"
+		:onclick `${get_env("CHANGE_WS")} ${ws[0]}`
 		`${ws[1]}`))))
