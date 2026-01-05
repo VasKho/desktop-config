@@ -4,7 +4,9 @@ CONFIG_ROOT=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && cd .. && 
 
 if [[ "${1}" == "start" ]]; then
     if [[ -f "${CONFIG_ROOT}/.env" ]]; then
+	set -o allexport
 	source "${CONFIG_ROOT}/.env"
+	set +o allexport
     fi
     eww daemon
     eww open-many bar
