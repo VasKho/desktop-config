@@ -1,4 +1,5 @@
-include $HOME/.config/sway/themes/THEME/theme.conf
+include $HOME/.config/sway/vars.conf
+include $HOME/.config/sway/themes/$THEME/theme.conf
 include $HOME/.config/sway/definitions.d/*.conf
 include $HOME/.config/sway/config.d/*.conf
 include $HOME/.config/sway/config.d/modes/*.conf
@@ -27,7 +28,7 @@ floating_modifier $mod normal
 
 bar {
     id default
-    swaybar_command $eww open-many bar
+    swaybar_command $DEFAULT_APPS_STATUSBAR
     position top
 }
 
@@ -39,6 +40,7 @@ input * {
       xkb_capslock disable
       dwt enabled
       tap enabled
+      drag_lock disabled
       natural_scroll enabled
 }
 
