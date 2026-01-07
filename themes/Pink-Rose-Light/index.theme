@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Pink-Rose-Light
+Comment=Custom theme in light pastel colors.
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+Name=Pink-Rose-Light
+GtkTheme=Pink-Rose-Light
+IconTheme=Pink-Rose-Light
+MetacityTheme=Pink-Rose-Light
