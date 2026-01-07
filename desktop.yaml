@@ -13,7 +13,7 @@ modules:
       file: ".env"
     features:
       launcher: "$'swaymsg exec \\'$menu\\''"
-      change_ws: "swaymsg workspace number"
+      change_ws: "'swaymsg workspace number'"
       profiler: "$'swaymsg exec \\'footclient -a \"btop\" -e btop -p 0\\''"
       network: "$'swaymsg exec \\'footclient -a \"nmtui\" -e nmtui\\''"
 
@@ -47,4 +47,12 @@ modules:
         close: "eww close powermenu"
       theme: "pink-rose"
 
+  fish:
   rofi:
+  foot:
+  swayimg:
+  sworkstyle:
+  org.freedesktop.FileManager1.common:
+  xdg-desktop-portal:
+  xdg-desktop-portal-termfilechooser:
+  yazi:
