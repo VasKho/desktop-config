@@ -109,6 +109,8 @@ func (i *Installer) prepareSystemConf() error {
 func (i *Installer) makeConfigs() error {
 	log.Printf("%s%s%s\n", colorYellow, "[Building configs]...", colorReset)
 	for mod, conf := range i.config.Modules {
+		log.Printf("Processing %s module config\n", mod)
+		if !i.isExportConfigValid(&conf.Export) { continue }
 		modDest := filepath.Join(mod, conf.Export.File)
 		tmpPath := filepath.Join(i.buildDir, modDest)
 		targetFile := filepath.Join(i.modulesDir, modDest)
@@ -145,23 +147,35 @@ func (i *Installer) makeConfigs() error {
 func (i *Installer) installConfigs() error {
 	log.Printf("%s%s%s\n", colorYellow, "[Linking to destinations]...", colorReset)
 	err := os.CopyFS(i.modulesDir, os.DirFS(i.buildDir))
-	if err != nil {
-		if os.IsNotExist(err) {
-			log.Printf("Nothing to be done.\n")
-			log.Printf("%s%s%s\n", colorYellow, "[Done].", colorReset)
-			return nil
-		}
+	if err != nil && !os.IsNotExist(err) {
 		return err
 	}
 
 	for mod := range i.config.Modules {
 		srcDir := filepath.Join(i.modulesDir, mod)
-		if err := i.Symlink(srcDir, filepath.Join(os.Getenv("XDG_CONFIG_HOME"), mod)); err != nil {
+		dstDir := filepath.Join(os.Getenv("XDG_CONFIG_HOME"), mod)
+		if err := i.Symlink(srcDir, dstDir); err != nil {
 			return err
 		}
 	}
 	log.Printf("%s%s%s\n", colorYellow, "[Done].", colorReset)
 	return nil
+}
+
+func (i *Installer) isExportConfigValid(conf *ExportConfig) bool {
+	if (ExportConfig{}) == *conf {
+		log.Println("Export section is empty. Skipping...")
+		return false
+	}
+	if conf.File == "" {
+		log.Println("Export file is empty. Skipping...")
+		return false
+	}
+	if conf.Format == "" {
+		log.Println("Export format is empty. Skipping...")
+		return false
+	}
+	return true
 }
 
 

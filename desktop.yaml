@@ -47,5 +47,4 @@ modules:
         close: "eww close powermenu"
       theme: "pink-rose"
 
-# rofi:
-#   theme: ${{vars.theme}}
+  rofi:

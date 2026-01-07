@@ -1,4 +1,4 @@
-configuration{
+configuration {
     modi: "drun";
     font: "Hack Nerd Font 14";
     show-icons: true;
@@ -85,18 +85,18 @@ element selected {
 
 mode-switcher {
     spacing: 0;
-  }
+}
 
 button {
     padding: 10px;
     border-radius: 10px;
     background-color: @bg-col;
     text-color: @text-col;
-    vertical-align: 0.5; 
+    vertical-align: 0.5;
     horizontal-align: 0.5;
 }
 
 button selected {
-  background-color: @bg-col-light;
-  text-color: @prompt-col;
+		background-color: @bg-col-light;
+		text-color: @prompt-col;
 }
