@@ -1,2 +1,3 @@
 /installer/desktop-config-installer
 /icons/*
+!/icons/.gitkeep
