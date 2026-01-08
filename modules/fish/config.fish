@@ -12,7 +12,7 @@ if status is-interactive
     set -x DESKTOP_APP_I_KNOW_ABOUT_GTK_INCOMPATIBILITY 1
     set -x PAGER less
     set -x MANPAGER less
-    set -x EDITOR emacs -nw
+    set -x EDITOR emacs -Q -nw
     set -x DOCKER_BUILDKIT 1
 		set -x ANDROID_HOME /opt/android-sdk
 		set -x GOOGLE_CLOUD_PROJECT_ID ""

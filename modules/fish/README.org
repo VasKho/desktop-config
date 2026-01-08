@@ -8,29 +8,25 @@ Currently only default plugins are used, so this setup isn't bloated.
 *** Requirements
 To get fully working setup one needs to install the following packages
 - ~fzf~
-- ~neovim~
 - ~git~
 - ~fd~
 - ~bat~
 
-Run ~make check~ to find if they all are present in your system.
-
 *** Quick start
 
 There are two possible options to install this dotfiles:
-- Via ~make~ (notice that you'll need to install ~make~ package as well in order to do so)
+- Via top-level installer and config
 
   #+begin_src sh
-    make install
-    # to uninstall run the following command
-    # make uninstall
+    ./desktop-config-installer desktop.yaml
   #+end_src
 
 - Manually
   Clone this repository to ~$HOME/.config/fish~
 
   #+begin_src sh
-    git clone https://github.com/VasKho/fish-config ~/.config/fish
+    git clone https://github.com/VasKho/desktop-config
+    cp -r desktop-config/modules/fish  ~/.config/fish
   #+end_src
 
 ** Aliases
@@ -38,11 +34,13 @@ There are two possible options to install this dotfiles:
 |-------+---------------------------------------------|
 | Alias | Description                                 |
 |-------+---------------------------------------------|
-| ~em~  | Open emacsclient in terminal                |
+| ~em~  | Open emacs in terminal                      |
 |-------+---------------------------------------------|
 | ~dbx~ | Distrobox with ~TERM=xterm-256color~ set up |
 |-------+---------------------------------------------|
 | ~ssh~ | ~ssh~ with ~TERM=xterm-256color~ set up     |
+|-------+---------------------------------------------|
+| ~ll~  | colored ~ls -lAh~                           |
 |-------+---------------------------------------------|
 
 ** Plugins
