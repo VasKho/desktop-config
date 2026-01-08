@@ -1,0 +1,62 @@
+* Desktop Configuration
+
+This repository stores my personal desktop configuration files. It includes settings for various applications, themes, icons, and a custom installer to apply them.
+
+** ~desktop.yaml~
+
+This is the main configuration file that drives the entire setup. It's written in YAML and is divided into two main sections: ~system~ and ~modules~.
+
+*** ~system~
+
+The ~system~ section defines the global look of the desktop:
+
+#+begin_src yaml
+  system:
+    theme: "Pink-Rose-Light"           # The GTK theme to be used.
+    cursor: "volantes_light_cursors"   # The cursor icons pack.
+    icons: "oomox-rose-pine-moon"      # The icon pack.
+    cursor_size: 24                    # The size of the cursor.
+    font: "Hack Nerd Font 11"          # The system-wide font.
+    dark_mode: false                   # Whether to use the dark variant of the theme.
+#+end_src
+
+*** ~modules~
+
+The ~modules~ section is used to configure individual applications. Each key under ~modules~ corresponds to a directory in the ~modules/~ folder.
+
+The installer processes this section to generate configuration files with dynamic values.
+
+#+begin_src yaml
+  modules:
+    sway:
+      export:
+        format: "set $${{key}} ${{value}}"
+        file: "vars.conf"
+      features:
+      # ...
+#+end_src
+
+Each module might contain two subsections: ~export~ and ~format~. They are used to generate config variables for given modules.
+Those sections might absent, but if not they are both must present.
+- ~export~: This tells the installer how to generate the configuration file.
+    - ~format~: A template string for each key-value pair. ~${{key}}~ is replaced by the feature name and ~${{value}}~ is replaced by its value.
+    - ~file~: The name of the file to be generated within the module's directory.
+- ~features~: A map of features that will be written to the exported file.
+
+** Installer
+
+The ~installer/~ directory contains a program that applies the configurations from ~desktop.yaml~.
+
+To run the installer:
+
+#+begin_src sh
+  cd installer
+  go run . ../desktop.yaml
+#+end_src
+
+The installer performs the following actions:
+
++ *System Settings*: It reads the ~system~ section and uses ~gsettings~ to apply the theme, icons, cursor, and font settings.
++ *Symlinking Themes*: It creates symlinks from the ~themes/~ and ~icons/~ directories in this repository to ~$HOME/.themes~ and ~$HOME/.icons~ respectively.
++ *Generating Module Configurations*: It reads the ~modules~ section and for each module, it generates a configuration file based on the ~export~ and ~features~ fields. For example, it will create ~modules/sway/vars.conf~ based on the ~sway~ configuration.
++ *Symlinking Module Directories*: It symlinks each application's configuration directory from ~modules/~ to the appropriate location in ~$HOME/.config/~ (respecting the ~$XDG_CONFIG_HOME~ variable).
