@@ -2,7 +2,7 @@
 ** About
 This repo contains rofi config files for launcher and clipboard.
 
-**Important note: They don't do anything when using standalone except fancy help on keyboard shortcuts**
+*Important note: They don't do anything when using standalone except fancy help on keyboard shortcuts*
 
 *** Launcher
 
