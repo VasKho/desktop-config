@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 {
   home.packages = with pkgs; [
-    telegram-desktop
+    (pkgs.callPackage ./telegram.nix {})
   ];
 
   programs = {
