@@ -1,5 +1,5 @@
 gen: let
-  excludeApps = ["Emacs"];
+  excludeApps = ["Emacs" "com.mitchellh.ghostty"];
 in {
   description = "Emacs-style navigation";
   manipulators = gen.makeBindings {

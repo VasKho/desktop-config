@@ -2,6 +2,7 @@
 {
   programs.ghostty = {
     enable = true;
+    clearDefaultKeybinds = true;
     enableFishIntegration = true;
     package = pkgs.ghostty-bin;
 
@@ -47,6 +48,16 @@
       shell-integration-features = "no-cursor,ssh-terminfo,ssh-env";
       macos-auto-secure-input = true;
       macos-secure-input-indication = true;
+
+      keybind = [
+        "alt+w=copy_to_clipboard"
+        "ctrl+y=paste_from_clipboard"
+        "ctrl+x>2=new_split:down"
+        "ctrl+x>3=new_split:right"
+        "ctrl+x>o=goto_split:next"
+        "ctrl+x>k=close_surface"
+        "ctrl+x>ctrl+c=quit"
+      ];
     };
   };
 }
