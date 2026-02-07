@@ -7,6 +7,12 @@ let
   result = builtins.concatStringsSep "\n" (map (f: builtins.readFile f) files);
 in
 {
+  home = {
+    packages = with pkgs; [
+      fzf
+    ];
+  };
+
   programs.fish = {
     enable = true;
     interactiveShellInit = result;
