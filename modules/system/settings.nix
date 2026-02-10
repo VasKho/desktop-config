@@ -20,7 +20,7 @@
       minimize-to-application = true;
       orientation = "bottom";
       persistent-apps = [
-        "/Applications/Zen.app"
+        # "/Applications/Zen.app"
       ];
       show-process-indicators = true;
       show-recents = false;

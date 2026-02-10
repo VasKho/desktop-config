@@ -140,10 +140,7 @@ in {
           (gen.clearVar "control-spacebar")
           (gen.runSh "pkill key_overlay")
         ];
-        conditions = [
-          (gen.ifVarSet "control-spacebar")
-          (gen.unlessApps excludeApps)
-        ];
+        conditions = [ (gen.unlessApps excludeApps) ];
       }
       {
         from = { code = "y"; mMods = ["control"]; };

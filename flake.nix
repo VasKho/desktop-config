@@ -12,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-darwin-browsers.url = "github:wuz/nix-darwin-browsers";
+    nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
@@ -39,26 +39,25 @@
           # Set Git commit hash for darwin-version.
           system.configurationRevision = self.rev or self.dirtyRev or null;
         };
-    in
-      {
-        darwinConfigurations."${host.name}" = let
-          hostBase = baseDarwinConfig host;
-        in nix-darwin.lib.darwinSystem {
-          modules = [
-            hostBase
+    in {
+      darwinConfigurations."${host.name}" = nix-darwin.lib.darwinSystem {
+        modules = [
+          (baseDarwinConfig host)
 
-            ./modules/system/default.nix
+          ./modules/system/default.nix
 
-            home-manager.darwinModules.home-manager {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                verbose = true;
-                extraSpecialArgs = { inherit host; };
-                users.${host.username} = import ./modules/home/default.nix;
-              };
-            }
-          ];
-        };
+          home-manager.darwinModules.home-manager {
+            nixpkgs.overlays = [ inputs.nixpkgs-firefox-darwin.overlay ];
+
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              verbose = true;
+              extraSpecialArgs = { inherit host; };
+              users.${host.username} = import ./modules/home/default.nix;
+            };
+          }
+        ];
       };
+    };
 }
