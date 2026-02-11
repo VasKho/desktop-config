@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 {
   home.packages = with pkgs; [
+    pkgs.home-manager
     (pkgs.callPackage ./telegram.nix {})
   ];
 
@@ -46,7 +47,7 @@
     neovim = {
       enable = true;
       defaultEditor = true;
-      extraLuaConfig = ''
+      initLua = ''
         vim.o.tabstop = 2
         vim.o.shiftwidth = 2
         vim.o.expandtab = true
@@ -59,6 +60,5 @@
     ripgrep.enable = true;
     ripgrep-all.enable = true;
     fastfetch.enable = true;
-    home-manager.enable = true;
   };
 }

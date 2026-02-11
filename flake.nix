@@ -2,17 +2,23 @@
   description = "vaslch0's nix-darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-
-		home-manager = {
-			url = "github:nix-community/home-manager/release-25.11";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
+		home-manager = {
+			url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
@@ -47,13 +53,11 @@
           ./modules/system/default.nix
 
           home-manager.darwinModules.home-manager {
-            nixpkgs.overlays = [ inputs.nixpkgs-firefox-darwin.overlay ];
-
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               verbose = true;
-              extraSpecialArgs = { inherit host; };
+              extraSpecialArgs = { inherit host; inherit inputs; };
               users.${host.username} = import ./modules/home/default.nix;
             };
           }

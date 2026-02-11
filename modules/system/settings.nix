@@ -19,9 +19,6 @@
       mineffect = "genie";
       minimize-to-application = true;
       orientation = "bottom";
-      persistent-apps = [
-        # "/Applications/Zen.app"
-      ];
       show-process-indicators = true;
       show-recents = false;
       tilesize = 59;
