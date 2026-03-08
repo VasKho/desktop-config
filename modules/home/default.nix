@@ -8,7 +8,7 @@
     ./programs.nix
     ./fish/default.nix
     ./ghostty.nix
-    ./zen-browser/default.nix
+    ./zen-browser.nix
     ./emacs.nix
     ./karabiner/default.nix
   ];

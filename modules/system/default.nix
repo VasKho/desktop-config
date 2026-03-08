@@ -5,7 +5,6 @@
 
   imports = [
     ./apps.nix
-    ./services.nix
     ./settings.nix
     ./autostart.nix
   ];

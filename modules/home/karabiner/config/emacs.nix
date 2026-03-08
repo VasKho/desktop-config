@@ -7,15 +7,11 @@ in {
       {
         conditions = [ (gen.unlessApps excludeApps) ];
         code = "control-x";
-        actions = [ (gen.runSh "~/.config/scripts/key_overlay C-x") ];
-        onExit = [ (gen.runSh "pkill key_overlay") ];
-      }
-      {
+     }
+     {
         conditions = [ (gen.unlessApps excludeApps) ];
         code = "control-spacebar";
-        actions = [ (gen.runSh "~/.config/scripts/key_overlay C-SPC") ];
-        onExit = [ (gen.runSh "pkill key_overlay") ];
-      }
+     }
     ];
 
     binds = [
@@ -122,7 +118,6 @@ in {
         to = [
           (gen.key { code = "delete_forward"; })
           (gen.clearVar "control-spacebar")
-          (gen.runSh "pkill key_overlay")
         ];
         conditions = [ (gen.unlessApps excludeApps) ];
       }
@@ -136,9 +131,9 @@ in {
       {
         from = { code = "w"; mMods = ["control"]; };
         to = [
-          (gen.key { code = "command-x"; })
+          (gen.key { code = "command-c"; })
+          (gen.key { code = "delete_or_backspace"; })
           (gen.clearVar "control-spacebar")
-          (gen.runSh "pkill key_overlay")
         ];
         conditions = [ (gen.unlessApps excludeApps) ];
       }
@@ -147,7 +142,6 @@ in {
         to = [
           (gen.key { code = "command-v"; })
           (gen.clearVar "control-spacebar")
-          (gen.runSh "pkill key_overlay")
         ];
         conditions = [ (gen.unlessApps excludeApps) ];
       }
@@ -168,7 +162,6 @@ in {
         from = { code = "c"; mMods = ["control"]; };
         to = [
           (gen.key { code = "command-q"; })
-          (gen.runSh "pkill key_overlay")
         ];
         conditions = [ (gen.unlessApps excludeApps) ];
       }
@@ -177,7 +170,6 @@ in {
         from = { code = "h"; };
         to = [
           (gen.key { code = "command-a"; })
-          (gen.runSh "pkill key_overlay")
         ];
         conditions = [ (gen.unlessApps excludeApps) ];
       }
@@ -186,7 +178,6 @@ in {
         from = { code = "k"; };
         to = [
           (gen.key { code = "command-w"; })
-          (gen.runSh "pkill key_overlay")
         ];
         conditions = [ (gen.unlessApps excludeApps) ];
       }
@@ -195,7 +186,6 @@ in {
         from = { code = "s"; mMods = ["control"]; };
         to = [
           (gen.key { code = "command-s"; })
-          (gen.runSh "pkill key_overlay")
         ];
         conditions = [ (gen.unlessApps excludeApps) ];
       }
@@ -226,7 +216,6 @@ in {
         to = [
           (gen.key { code = "command-c"; })
           (gen.clearVar "control-spacebar")
-          (gen.runSh "pkill key_overlay")
         ];
         conditions = [ (gen.unlessApps excludeApps) ];
       }

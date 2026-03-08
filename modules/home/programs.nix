@@ -1,8 +1,10 @@
 { config, lib, pkgs, ... }:
 {
   home.packages = with pkgs; [
-    pkgs.home-manager
-    (pkgs.callPackage ./telegram.nix {})
+    home-manager
+    android-tools
+    typst
+    tinymist
   ];
 
   programs = {
@@ -29,8 +31,8 @@
         general = {
           preferredEditor = "nvim";
           previewFeatures = false;
-          vimMode = true;
-          enableAutoUpdate = false;
+          vimMode = false;
+          enableAutoUpdate = true;
 
         };
         ide.enabled = false;
