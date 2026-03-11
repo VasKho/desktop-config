@@ -1,5 +1,5 @@
 gen: let
-  excludeApps = ["Emacs" "com.mitchellh.ghostty"];
+  excludeApps = ["Emacs" "com.mitchellh.ghostty" "dev.zed.Zed"];
 in {
   description = "Emacs-style navigation";
   manipulators = gen.makeBindings {
@@ -8,18 +8,47 @@ in {
         conditions = [ (gen.unlessApps excludeApps) ];
         code = "control-x";
      }
-     {
-        conditions = [ (gen.unlessApps excludeApps) ];
-        code = "control-spacebar";
-     }
     ];
 
     binds = [
       {
-        from = { code = "a"; mMods = ["control"]; };
-        to = [ (gen.key { code = "control-a"; }) ];
+        from = { code = "spacebar"; mMods = ["control"]; };
+        to = [ (gen.setVar "control-spacebar") ];
         conditions = [
           (gen.unlessVarSet "control-spacebar")
+          (gen.unlessApps excludeApps)
+        ];
+      }
+      {
+        from = { code = "spacebar"; mMods = ["control"]; };
+        to = [
+          (gen.clearVar "control-spacebar")
+          (gen.key { code = "left_arrow"; })
+        ];
+        conditions = [
+          (gen.ifVarSet "control-spacebar")
+          (gen.unlessApps excludeApps)
+        ];
+      }
+      {
+        from = { code = "g"; mMods = ["control"]; };
+        to = [
+          (gen.clearVar "control-spacebar")
+          (gen.key { code = "left_arrow"; })
+        ];
+        conditions = [
+          (gen.ifVarSet "control-spacebar")
+          (gen.unlessApps excludeApps)
+        ];
+      }
+      {
+        from = { code = "escape"; };
+        to = [
+          (gen.clearVar "control-spacebar")
+          (gen.key { code = "left_arrow"; })
+        ];
+        conditions = [
+          (gen.ifVarSet "control-spacebar")
           (gen.unlessApps excludeApps)
         ];
       }
@@ -33,14 +62,6 @@ in {
       }
       {
         from = { code = "e"; mMods = ["control"]; };
-        to = [ (gen.key { code = "control-e"; }) ];
-        conditions = [
-          (gen.unlessVarSet "control-spacebar")
-          (gen.unlessApps excludeApps)
-        ];
-      }
-      {
-        from = { code = "e"; mMods = ["control"]; };
         to = [ (gen.key { code = "control-shift-e"; }) ];
         conditions = [
           (gen.ifVarSet "control-spacebar")
@@ -48,15 +69,7 @@ in {
         ];
       }
       {
-        from = { code = "b"; mMods = ["control"]; };
-        to = [ (gen.key { code = "left_arrow"; }) ];
-        conditions = [
-          (gen.unlessVarSet "control-spacebar")
-          (gen.unlessApps excludeApps)
-        ];
-      }
-      {
-        from = { code = "b"; mMods = ["control"]; };
+        from = { code = "b"; mMods = ["control"]; oMods = ["option"]; };
         to = [ (gen.key { code = "shift-left_arrow"; }) ];
         conditions = [
           (gen.ifVarSet "control-spacebar")
@@ -64,15 +77,23 @@ in {
         ];
       }
       {
-        from = { code = "f"; mMods = ["control"]; };
-        to = [ (gen.key { code = "right_arrow"; }) ];
+        from = { code = "f"; mMods = ["control"]; oMods = ["option"]; };
+        to = [ (gen.key { code = "shift-right_arrow"; }) ];
         conditions = [
-          (gen.unlessVarSet "control-spacebar")
+          (gen.ifVarSet "control-spacebar")
           (gen.unlessApps excludeApps)
         ];
       }
       {
-        from = { code = "f"; mMods = ["control"]; };
+        from = { code = "left_arrow"; oMods = ["option"]; };
+        to = [ (gen.key { code = "shift-left_arrow"; }) ];
+        conditions = [
+          (gen.ifVarSet "control-spacebar")
+          (gen.unlessApps excludeApps)
+        ];
+      }
+      {
+        from = { code = "right_arrow"; oMods = ["option"]; };
         to = [ (gen.key { code = "shift-right_arrow"; }) ];
         conditions = [
           (gen.ifVarSet "control-spacebar")
@@ -82,25 +103,9 @@ in {
 
       {
         from = { code = "n"; mMods = ["control"]; };
-        to = [ (gen.key { code = "down_arrow"; }) ];
-        conditions = [
-          (gen.unlessVarSet "control-spacebar")
-          (gen.unlessApps excludeApps)
-        ];
-      }
-      {
-        from = { code = "n"; mMods = ["control"]; };
         to = [ (gen.key { code = "shift-down_arrow"; }) ];
         conditions = [
           (gen.ifVarSet "control-spacebar")
-          (gen.unlessApps excludeApps)
-        ];
-      }
-      {
-        from = { code = "p"; mMods = ["control"]; };
-        to = [ (gen.key { code = "up_arrow"; }) ];
-        conditions = [
-          (gen.unlessVarSet "control-spacebar")
           (gen.unlessApps excludeApps)
         ];
       }
@@ -112,9 +117,25 @@ in {
           (gen.unlessApps excludeApps)
         ];
       }
+      {
+        from = { code = "down_arrow"; };
+        to = [ (gen.key { code = "shift-down_arrow"; }) ];
+        conditions = [
+          (gen.ifVarSet "control-spacebar")
+          (gen.unlessApps excludeApps)
+        ];
+      }
+      {
+        from = { code = "up_arrow"; };
+        to = [ (gen.key { code = "shift-up_arrow"; }) ];
+        conditions = [
+          (gen.ifVarSet "control-spacebar")
+          (gen.unlessApps excludeApps)
+        ];
+      }
 
       {
-        from = { code = "d"; mMods = ["control"]; };
+        from = { code = "d"; mMods = ["control"]; oMods = ["option"]; };
         to = [
           (gen.key { code = "delete_forward"; })
           (gen.clearVar "control-spacebar")
@@ -190,27 +211,7 @@ in {
         conditions = [ (gen.unlessApps excludeApps) ];
       }
 
-      {
-        from = { code = "d"; mMods = ["option"]; };
-        to = [
-          (gen.key { code = "fn-option-delete_or_backspace"; })
-        ];
-        conditions = [ (gen.unlessApps excludeApps) ];
-      }
-      {
-        from = { code = "b"; mMods = ["option"]; };
-        to = [
-          (gen.key { code = "option-left_arrow"; })
-        ];
-        conditions = [ (gen.unlessApps excludeApps) ];
-      }
-      {
-        from = { code = "f"; mMods = ["option"]; };
-        to = [
-          (gen.key { code = "option-right_arrow"; })
-        ];
-        conditions = [ (gen.unlessApps excludeApps) ];
-      }
+      # Option binds
       {
         from = { code = "w"; mMods = ["option"]; };
         to = [

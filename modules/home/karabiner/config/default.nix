@@ -4,14 +4,14 @@ in builtins.toJSON {
   global = {
     ask_for_confirmation_before_quitting = true;
     check_for_updates_on_startup = false;
-    show_in_menu_bar = true;
-    unsafe_ui = false;
+    show_in_menu_bar = false;
   };
 
   profiles = [
     {
       name = "Default profile";
       selected = true;
+      virtual_hid_keyboard = { keyboard_type_v2 = "ansi"; };
 
       simple_modifications = gen.makeBindings {
         binds = [
@@ -43,7 +43,6 @@ in builtins.toJSON {
           "mouse_motion_to_scroll.speed" = 100;
         };
         rules = [
-          (import ./ru_layout.nix gen)
           (import ./caps.nix gen)
           (import ./emacs.nix gen)
           (import ./open_term.nix gen)
