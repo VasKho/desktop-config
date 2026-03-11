@@ -7,7 +7,7 @@ in {
       {
         conditions = [ (gen.unlessApps excludeApps) ];
         code = "control-x";
-     }
+      }
     ];
 
     binds = [
