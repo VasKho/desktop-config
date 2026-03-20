@@ -1,0 +1,146 @@
+[
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-y": "editor::Paste",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-alt-n": "editor::MoveToEndOfParagraph",
+    },
+  },
+  {
+    "context": "(Editor && selection_mode)",
+    "bindings": {
+      "ctrl-alt-n": "editor::SelectToEndOfParagraph",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-alt-p": "editor::MoveToStartOfParagraph",
+    },
+  },
+  {
+    "context": "(Editor && selection_mode)",
+    "bindings": {
+      "ctrl-alt-p": "editor::SelectToStartOfParagraph",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-t": "terminal_panel::Toggle",
+    },
+  },
+  {
+    "bindings": {
+      "ctrl-c ctrl-w s": "workspace::Open",
+    },
+  },
+  {
+    "bindings": {
+      "ctrl-c ctrl-w c": "workspace::CloseProject",
+    },
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "shift-c": "project_panel::Copy",
+    },
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "shift-p": "project_panel::Paste",
+    },
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "c f": "project_panel::NewFile",
+    },
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "c d": "project_panel::NewDirectory",
+    },
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "shift-x": "project_panel::Cut",
+    },
+  },
+  {
+    "context": "(ProjectPanel && not_editing)",
+    "bindings": {
+      "tab": "project_panel::Open",
+    },
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "shift-d": [
+        "project_panel::Trash",
+        {
+          "skip_prompt": true,
+        },
+      ],
+    },
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "shift-r": "project_panel::Rename",
+    },
+  },
+  {
+    "bindings": {
+      "alt-0": "project_panel::Toggle",
+    },
+  },
+  {
+    "context": "GitPanel",
+    "bindings": {
+      "q": "git_panel::Close",
+    },
+  },
+  {
+    "bindings": {
+      "ctrl-x m": "outline_panel::Toggle",
+    },
+  },
+  {
+    "bindings": {
+      "ctrl-x g": "git_panel::Toggle",
+    },
+  },
+  {
+    "context": "Editor && selection_mode",
+    "bindings": {
+      "ctrl-alt-f": "editor::SelectToNextSubwordEnd",
+    },
+  },
+  {
+    "context": "Editor && selection_mode",
+    "bindings": {
+      "ctrl-alt-b": "editor::SelectToPreviousSubwordStart",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-alt-/": "editor::Redo",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-backspace": "editor::DeleteToPreviousSubwordStart",
+    },
+  },
+]

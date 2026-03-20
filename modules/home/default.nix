@@ -11,5 +11,6 @@
     ./zen-browser.nix
     ./emacs.nix
     ./karabiner/default.nix
+    ./zed/default.nix
   ];
 }
