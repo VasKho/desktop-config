@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   fonts.packages = [ pkgs.nerd-fonts.hack ];
   time.timeZone = "Europe/Minsk";

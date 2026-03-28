@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }: let
+{ lib, ... }: let
   extension = uuid: {
     name = uuid;
     value = {

@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ ... }:
 
 {
   system.activationScripts.loginItems.text = ''

@@ -1,4 +1,4 @@
-{ host, inputs, pkgs, lib, ... }:
+{ host, inputs, lib, ... }:
 {
   home.stateVersion = "25.11";
   home.homeDirectory = lib.mkForce (host.homeDirectory);
@@ -9,7 +9,7 @@
     ./fish/default.nix
     ./ghostty.nix
     ./zen-browser.nix
-    ./emacs.nix
+    # ./emacs.nix
     ./karabiner/default.nix
     ./zed/default.nix
   ];

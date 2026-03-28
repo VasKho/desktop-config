@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 let
   files = builtins.filter
     (f: f != ./. + "/default.nix")

@@ -77,7 +77,7 @@ lib: let
     ];
 
 in
-rec {
+{
   inherit ifVarSet;
   inherit unlessVarSet;
   inherit setVar;

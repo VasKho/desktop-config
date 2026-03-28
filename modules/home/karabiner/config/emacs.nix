@@ -1,11 +1,11 @@
 gen: let
-  excludeApps = ["Emacs" "com.mitchellh.ghostty" "dev.zed.Zed"];
+  excludeApps = ["Emacs" "com.mitchellh.ghostty" ];
 in {
   description = "Emacs-style navigation";
   manipulators = gen.makeBindings {
     prefixes = [
       {
-        conditions = [ (gen.unlessApps excludeApps) ];
+        conditions = [ (gen.unlessApps (excludeApps ++ ["dev.zed.Zed"])) ];
         code = "control-x";
       }
     ];

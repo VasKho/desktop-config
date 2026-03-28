@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ ... }:
 {
   xdg.configFile = {
     "zed/settings.json".source = ./settings.json;

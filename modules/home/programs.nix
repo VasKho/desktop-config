@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     home-manager
@@ -57,7 +57,6 @@
       '';
     };
 
-    gitui.enable = true;
     jq.enable = true;
     ripgrep.enable = true;
     ripgrep-all.enable = true;
