@@ -45,6 +45,7 @@ in builtins.toJSON {
         rules = [
           (import ./caps.nix gen)
           (import ./emacs.nix gen)
+          (import ./window.nix gen)
           (import ./open_term.nix gen)
           (import ./toggle_messenger.nix gen)
           (import ./screenshot.nix gen)

@@ -22,6 +22,10 @@
       show-process-indicators = true;
       show-recents = false;
       tilesize = 59;
+      persistent-apps = [
+        "/Applications/Zed.app"
+        "/Applications/Telegram.app"
+      ];
     };
 
     defaults.ActivityMonitor.ShowCategory = 101;

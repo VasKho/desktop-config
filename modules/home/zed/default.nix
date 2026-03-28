@@ -6,6 +6,6 @@
     "zed/themes" = {
       source = ./themes;
       recursive = true;
-    }
+    };
   };
 }

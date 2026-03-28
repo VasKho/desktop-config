@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixd.url = "github:nix-community/nixd";
 
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/master";
@@ -21,7 +22,7 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixd, home-manager, ... }:
     let
       host = {
         name = "Vasilis-MacBook-Pro";
@@ -31,7 +32,7 @@
         shell = "fish";
       };
 
-      baseDarwinConfig = host: { pkgs, ... }:
+      baseDarwinConfig = host: { ... }:
         {
           nixpkgs.hostPlatform = host.arch;
           nixpkgs.config.allowUnfree = true;

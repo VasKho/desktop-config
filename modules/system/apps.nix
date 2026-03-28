@@ -8,6 +8,7 @@
     wget
     podman
     podman-compose
+    nixd
   ];
 
   homebrew = {

@@ -61,4 +61,9 @@
     "dark": "Gruvbox Dark Soft",
   },
   "file_scan_exclusions": [".git", "target/"],
+  "languages": {
+    "Nix": {
+      "language_servers": ["nixd", "!nil"],
+    },
+  },
 }
