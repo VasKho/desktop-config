@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: let
+{ lib, ... }: let
   gen = import ./generator.nix lib;
 in builtins.toJSON {
   global = {
