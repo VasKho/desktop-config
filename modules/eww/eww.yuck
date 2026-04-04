@@ -1,4 +1,0 @@
-(include "./bar/bar.yuck")
-(include "./calendar/calendar.yuck")
-(include "./screenshot/screenshot.yuck")
-(include "./powermenu/powermenu.yuck")

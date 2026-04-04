@@ -1,7 +1,0 @@
-[mgr]
-ratio = [0, 3, 5]
-linemode = "size_and_mtime"
-show_hidden = true
-
-[preview]
-tab_size = 2

@@ -1,7 +1,0 @@
-[filechooser]
-cmd=$HOME/.config/yazi/yazi.sh
-default_dir=$HOME
-env=TERMCMD=foot
-
-open_mode=suggested
-save_mode=suggested
