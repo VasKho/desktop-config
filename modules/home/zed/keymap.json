@@ -6,7 +6,7 @@
       "alt-0": "project_panel::Toggle",
       "ctrl-x m": "outline_panel::Toggle",
       "ctrl-x g": "git_panel::Toggle",
-      "ctrl-x 5 0": "workspace::CloseWindow",
+      "ctrl-x ctrl-c": "zed::Quit",
     },
   },
   {
@@ -15,8 +15,11 @@
       "alt-down": "editor::MoveToEndOfParagraph",
       "alt-up": "editor::MoveToStartOfParagraph",
       "ctrl-alt-/": "editor::Redo",
+      "ctrl-a": ["editor::MoveToBeginningOfLine", { "stop_at_soft_wraps": false, "stop_at_indent": false }],
       "alt-backspace": "editor::DeleteToPreviousSubwordStart",
       "alt-m": ["editor::MoveToBeginningOfLine", { "stop_at_soft_wraps": false, "stop_at_indent": true }],
+      "alt-;": ["editor::ToggleComments", { "advance_downwards": true }],
+      "ctrl-x h": "editor::SelectAll",
     },
   },
   {
@@ -32,6 +35,7 @@
     "context": "Editor && mode == full",
     "bindings": {
       "ctrl-g ctrl-g": "go_to_line::Toggle",
+      "ctrl-s": "buffer_search::Deploy",
     },
   },
   {
@@ -54,7 +58,7 @@
     },
   },
   {
-    "context": "GitPanel",
+    "context": "GitPanel && !Editor",
     "bindings": {
       "q": "git_panel::Close",
     },

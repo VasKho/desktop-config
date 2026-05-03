@@ -24,5 +24,25 @@ module.exports = gen.build({
       from: { code: "p" },
       to: [gen.runSh("open -g raycast://extensions/raycast/window-management/previous-desktop")],
     },
+    {
+      prefixes: ["command-w"],
+      from: { code: "left_arrow" },
+      to: [gen.key({ code: "control-option-command-left_arrow" })],
+    },
+    {
+      prefixes: ["command-w"],
+      from: { code: "right_arrow" },
+      to: [gen.key({ code: "control-option-command-right_arrow" })],
+    },
+    {
+      prefixes: ["command-w"],
+      from: { code: "m" },
+      to: [gen.key({ code: "option-command-m" })],
+    },
+    {
+      prefixes: ["command-w"],
+      from: { code: "c" },
+      to: [gen.key({ code: "command-w" })],
+    },
   ],
 });

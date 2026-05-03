@@ -25,27 +25,6 @@
       };
     };
 
-    gemini-cli = {
-      enable = true;
-      settings = {
-        general = {
-          preferredEditor = "nvim";
-          previewFeatures = false;
-          vimMode = false;
-          enableAutoUpdate = true;
-
-        };
-        ide.enabled = false;
-        privacy.usageStatisticsEnabled = false;
-        security.auth.selectedType = "oauth-personal";
-        ui.theme = "Default";
-        tools = {
-          sandbox = true;
-          autoAccept = false;
-        };
-      };
-    };
-
     neovim = {
       enable = true;
       defaultEditor = true;

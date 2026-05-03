@@ -9,6 +9,7 @@
     podman
     podman-compose
     nixd
+    llama-cpp
   ];
 
   homebrew = {
