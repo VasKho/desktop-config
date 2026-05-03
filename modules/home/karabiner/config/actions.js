@@ -1,5 +1,20 @@
 const gen = new (require("./generator.js"))();
 
+toggleMessengerCommand = `osascript -e '
+if application "Telegram" is not running
+  do shell script "open -a Telegram"
+end if
+
+tell application "System Events"
+  tell process "Telegram"
+    set state to get value of attribute "AXMinimized" of first window
+    set value of attribute "AXMinimized" of first window to not state
+    if state is true
+      set frontmost to true
+    end if
+  end tell
+end tell'`;
+
 module.exports = gen.build({
   description: "System-wide shortcut actions",
   binds: [
@@ -13,7 +28,7 @@ module.exports = gen.build({
     },
     {
       from: { code: "m", mMods: ["command"] },
-      to: [gen.runSh("~/.config/scripts/messenger")],
+      to: [gen.runSh(toggleMessengerCommand)],
     },
   ],
 });

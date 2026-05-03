@@ -50,7 +50,10 @@
       macos-secure-input-indication = true;
 
       keybind = [
+        "cmd+q=quit"
         "ctrl+x>ctrl+c=quit"
+        "cmd+v=paste_from_clipboard"
+        "cmd+c=copy_to_clipboard"
       ];
     };
   };
