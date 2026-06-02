@@ -65,7 +65,7 @@ class Generator {
   };
 
   #fromParser = (rest) => {
-    let key_code = { key_code: rest.code };
+    let key_code = rest.code ? { key_code: rest.code } : rest;
     let mMods = rest.mMods ? { mandatory: rest.mMods } : {};
     let oMods = rest.oMods ? { optional: rest.oMods } : {};
     let mods = { modifiers: { ...mMods, ...oMods } };
@@ -114,17 +114,10 @@ class Generator {
     let enterBind = this.#addBind({
       from: { code: split.pop(), mMods: split },
       to: actions.concat(this.setVar(params.code)),
-      //   ...params.prefixes,
       conditions: params.conditions,
     });
     return [breakBinds, enterBind];
   };
-
-  // keyCode = { code, mods ? null, ... }@rest:
-  //   (lib.removeAttrs rest [ "code" "mods" ]) // {
-  //     key_code = code;
-  //   }
-  //   // (if mods != null then { modifiers = mods; } else {});
 }
 
 module.exports = Generator;

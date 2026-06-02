@@ -119,8 +119,8 @@ module.exports = gen.build({
       conditions: [gen.ifVarSet("control-spacebar")],
     },
     {
-      from: { code: "escape" },
-      to: [gen.clearVar("control-spacebar")],
+      from: { any: "key_code" },
+      to: [gen.clearVar("control-spacebar"), { from_event: true }],
       conditions: [gen.ifVarSet("control-spacebar")],
     },
   ],
