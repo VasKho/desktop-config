@@ -66,7 +66,7 @@
       "language_servers": ["nixd", "!nil"],
     },
     "Python": {
-      "language_servers": ["pylsp"],
+      "language_servers": ["pylsp", "ruff"],
       "tab_size": 4,
     },
   },

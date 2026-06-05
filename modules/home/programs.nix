@@ -5,6 +5,7 @@
     android-tools
     typst
     tinymist
+    vlc-bin
   ];
 
   programs = {

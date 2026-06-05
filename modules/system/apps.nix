@@ -20,6 +20,7 @@
       "telegram"
       "karabiner-elements"
       "zed"
+      "transmission"
     ];
   };
 }
