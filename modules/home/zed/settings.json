@@ -22,7 +22,7 @@
     "git_status": false,
   },
   "tab_bar": {
-    "show": true,
+    "show": false,
   },
   "title_bar": {
     "show_branch_status_icon": true,

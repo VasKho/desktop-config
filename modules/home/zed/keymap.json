@@ -1,12 +1,11 @@
 [
   {
     "bindings": {
-      "ctrl-c ctrl-w s": "workspace::Open",
-      "ctrl-c ctrl-w c": "workspace::CloseProject",
       "alt-0": "project_panel::Toggle",
       "ctrl-x m": "outline_panel::Toggle",
       "ctrl-x g": "git_panel::Toggle",
       "ctrl-x ctrl-c": "zed::Quit",
+      "ctrl-x t": "tab_switcher::Toggle",
     },
   },
   {
@@ -45,6 +44,15 @@
     },
   },
   {
+    "context": "ProjectPanel",
+    "unbind": {
+      "enter": "project_panel::Rename",
+    },
+    "bindings": {
+      "enter": ["workspace::SendKeystrokes", "space cmd-b"],
+    },
+  },
+  {
     "context": "ProjectPanel && not_editing",
     "bindings": {
       "tab": "project_panel::Open",
@@ -69,7 +77,6 @@
       "alt-x": "command_palette::Toggle",
       "ctrl-x ctrl-s": "workspace::Save",
       "ctrl-x b": "file_finder::Toggle",
-      "ctrl-x ctrl-b": "file_finder::Toggle",
       "ctrl-x o": "workspace::ActivateNextPane",
       "ctrl-x 4 0": "pane::JoinIntoNext",
     },
