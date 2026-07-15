@@ -77,7 +77,7 @@ in {
         "zen.themes.disable-all" = true;
       };
 
-      keyboardShortcutsVersion = 16;
+      keyboardShortcutsVersion = 19;
       keyboardShortcuts = [
         {
           id = "key_newNavigatorTab";

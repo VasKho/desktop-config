@@ -2,7 +2,7 @@ const gen = new (require("./generator.js"))();
 
 module.exports = gen.build({
   description: "non-us-backslash remapping",
-  enabled: true,
+  enabled: false,
   binds: [
     {
       from: { code: "non_us_backslash", oMods: ["any"] },
