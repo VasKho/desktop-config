@@ -19,15 +19,15 @@ module.exports = gen.build({
   description: "System-wide shortcut actions",
   binds: [
     {
-      from: { code: "s", mMods: ["left_command", "right_command"] },
+      from: { code: "s", mMods: ["left_option", "right_option"] },
       to: [gen.runSh("open -a Screenshot")],
     },
     {
-      from: { code: "return_or_enter", mMods: ["command"] },
+      from: { code: "return_or_enter", mMods: ["option"] },
       to: [gen.runSh("open -na Ghostty")],
     },
     {
-      from: { code: "m", mMods: ["command"] },
+      from: { code: "m", mMods: ["option"] },
       to: [gen.runSh(toggleMessengerCommand)],
     },
   ],

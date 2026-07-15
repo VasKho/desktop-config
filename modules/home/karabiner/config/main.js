@@ -11,25 +11,6 @@ let conf = {
       selected: true,
       virtual_hid_keyboard: { keyboard_type_v2: "ansi" },
 
-      simple_modifications: [
-        {
-          from: { key_code: "left_command" },
-          to: [{ key_code: "left_option" }],
-        },
-        {
-          from: { key_code: "left_option" },
-          to: [{ key_code: "left_command" }],
-        },
-        {
-          from: { key_code: "right_command" },
-          to: [{ key_code: "right_option" }],
-        },
-        {
-          from: { key_code: "right_option" },
-          to: [{ key_code: "right_command" }],
-        },
-      ],
-
       complex_modifications: {
         parameters: {
           "basic.simultaneous_threshold_milliseconds": 50,
@@ -45,6 +26,7 @@ let conf = {
           require("./emacs.js"),
           require("./window.js"),
           require("./actions.js"),
+          require("./power.js"),
         ],
       },
     },

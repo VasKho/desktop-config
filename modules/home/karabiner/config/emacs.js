@@ -32,8 +32,13 @@ module.exports = gen.build({
     },
 
     {
-      from: { code: "d", mMods: ["control"], oMods: ["option"] },
+      from: { code: "d", mMods: ["control"], oMods: ["command"] },
       to: [gen.key({ code: "delete_forward" })],
+      to_after_key_up: [gen.clearVar("control-spacebar")],
+    },
+    {
+      from: { code: "delete_or_backspace", mMods: ["command"] },
+      to: [gen.key({ code: "option-delete_or_backspace" })],
       to_after_key_up: [gen.clearVar("control-spacebar")],
     },
 
@@ -51,7 +56,7 @@ module.exports = gen.build({
       to: [gen.key({ code: "command-v" }), gen.clearVar("control-spacebar")],
     },
     {
-      from: { code: "w", mMods: ["option"] },
+      from: { code: "w", mMods: ["command"] },
       to: [gen.key({ code: "command-c" }), gen.clearVar("control-spacebar")],
     },
 

@@ -50,10 +50,11 @@
       macos-secure-input-indication = true;
 
       keybind = [
-        "cmd+q=quit"
-        "ctrl+x>ctrl+c=quit"
-        "cmd+v=paste_from_clipboard"
-        "cmd+c=copy_to_clipboard"
+        "ctrl+key_x>ctrl+key_c=quit"
+        "ctrl+key_x>3=new_split:right"
+        "ctrl+key_x>2=new_split:down"
+        "ctrl+key_x>key_k=close_surface"
+        "ctrl+key_x>key_o=goto_split:next"
       ];
     };
   };

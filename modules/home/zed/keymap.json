@@ -1,7 +1,7 @@
 [
   {
     "bindings": {
-      "alt-0": "project_panel::Toggle",
+      "cmd-0": "project_panel::Toggle",
       "ctrl-x m": "outline_panel::Toggle",
       "ctrl-x g": "git_panel::Toggle",
       "ctrl-x ctrl-c": "zed::Quit",
@@ -11,13 +11,13 @@
   {
     "context": "Editor",
     "bindings": {
-      "alt-down": "editor::MoveToEndOfParagraph",
-      "alt-up": "editor::MoveToStartOfParagraph",
-      "ctrl-alt-/": "editor::Redo",
+      "cmd-down": "editor::MoveToEndOfParagraph",
+      "cmd-up": "editor::MoveToStartOfParagraph",
+      "ctrl-cmd-/": "editor::Redo",
       "ctrl-a": ["editor::MoveToBeginningOfLine", { "stop_at_soft_wraps": false, "stop_at_indent": false }],
-      "alt-backspace": "editor::DeleteToPreviousSubwordStart",
-      "alt-m": ["editor::MoveToBeginningOfLine", { "stop_at_soft_wraps": false, "stop_at_indent": true }],
-      "alt-;": ["editor::ToggleComments", { "advance_downwards": true }],
+      "cmd-backspace": "editor::DeleteToPreviousSubwordStart",
+      "cmd-m": ["editor::MoveToBeginningOfLine", { "stop_at_soft_wraps": false, "stop_at_indent": true }],
+      "cmd-;": ["editor::ToggleComments", { "advance_downwards": true }],
       "ctrl-x h": "editor::SelectAll",
     },
   },
@@ -40,7 +40,7 @@
   {
     "context": "Workspace",
     "bindings": {
-      "alt-t": "terminal_panel::Toggle",
+      "cmd-t": "terminal_panel::Toggle",
     },
   },
   {
@@ -74,7 +74,7 @@
   {
     "context": "Workspace",
     "bindings": {
-      "alt-x": "command_palette::Toggle",
+      "cmd-x": "command_palette::Toggle",
       "ctrl-x ctrl-s": "workspace::Save",
       "ctrl-x b": "file_finder::Toggle",
       "ctrl-x o": "workspace::ActivateNextPane",
