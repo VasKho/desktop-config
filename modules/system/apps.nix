@@ -4,10 +4,10 @@
     fish
     raycast
     mousecape
-    tree-sitter
     wget
-    podman
-    podman-compose
+    docker
+    docker-compose
+    colima
     nixd
     llama-cpp
   ];
@@ -16,11 +16,19 @@
     enable = true;
     enableFishIntegration = true;
 
+    taps = [
+     {
+       name = "jurplel/tap";
+       trusted = true;
+     }
+    ];
+
     casks = [
       "telegram"
       "karabiner-elements"
       "zed"
       "transmission"
+      "instant-space-switcher"
     ];
   };
 }

@@ -39,6 +39,12 @@
       '';
     };
 
+    direnv = {
+      enable = true;
+      enableFishIntegration = true;
+      nix-direnv.enable = true;
+    };
+
     jq.enable = true;
     ripgrep.enable = true;
     ripgrep-all.enable = true;
