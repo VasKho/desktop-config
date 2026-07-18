@@ -22,7 +22,7 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nixd, home-manager, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixd, home-manager, zen-browser, ... }:
     let
       host = {
         name = "Vasilis-MacBook-Pro";
@@ -43,11 +43,11 @@
           nix.settings.experimental-features = "nix-command flakes";
           programs.fish.enable = true;
 
-          # Set Git commit hash for darwin-version.
           system.configurationRevision = self.rev or self.dirtyRev or null;
         };
     in {
       darwinConfigurations."${host.name}" = nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit zen-browser; };
         modules = [
           (baseDarwinConfig host)
 

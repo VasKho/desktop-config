@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, zen-browser, ... }:
 
 {
   system = {
@@ -23,6 +23,7 @@
       show-recents = false;
       tilesize = 59;
       persistent-apps = [
+        "${zen-browser.packages.${pkgs.system}.default}/Applications/Zen Browser (Beta).app"
         "/Applications/Zed.app"
         "/Applications/Telegram.app"
       ];
