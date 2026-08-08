@@ -12,8 +12,8 @@ in {
     config.allowUnfree = true;
   };
 
+  nix.package = pkgs.lix;
   nix.settings = {
-    package = pkgs.lix;
     experimental-features = "nix-command flakes";
     auto-optimise-store = true;
   };
@@ -44,7 +44,7 @@ in {
     colima
     docker
     docker-compose
-    ghostty
+    ghostty-bin
     raycast
     mousecape
     home-manager
