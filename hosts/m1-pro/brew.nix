@@ -14,7 +14,6 @@
       "telegram"
       "karabiner-elements"
       "zed"
-      "folx"
       "instant-space-switcher"
     ];
   };

@@ -1,6 +1,7 @@
 [
   {
     "bindings": {
+      "cmd-x": "command_palette::Toggle",
       "cmd-0": "project_panel::Toggle",
       "ctrl-x m": "outline_panel::Toggle",
       "ctrl-x g": "git_panel::Toggle",
@@ -11,23 +12,66 @@
   {
     "context": "Editor",
     "bindings": {
-      "cmd-down": "editor::MoveToEndOfParagraph",
-      "cmd-up": "editor::MoveToStartOfParagraph",
+      "ctrl-p": "editor::MoveUp",
+      "ctrl-n": "editor::MoveDown",
+      "ctrl-b": "editor::MoveLeft",
+      "ctrl-f": "editor::MoveRight",
+      "ctrl-cmd-p": "editor::MoveToStartOfParagraph",
+      "ctrl-cmd-n": "editor::MoveToEndOfParagraph",
+      "ctrl-cmd-f": "editor::MoveToNextSubwordEnd",
+      "ctrl-cmd-b": "editor::MoveToPreviousSubwordStart",
+      "ctrl-space": "editor::SetMark",
+      "ctrl-/": "editor::Undo",
       "ctrl-cmd-/": "editor::Redo",
-      "ctrl-a": ["editor::MoveToBeginningOfLine", { "stop_at_soft_wraps": false, "stop_at_indent": false }],
+      "ctrl-e": "editor::MoveToEndOfLine",
+      "ctrl-a": [
+        "editor::MoveToBeginningOfLine",
+        {
+          "stop_at_soft_wraps": false,
+          "stop_at_indent": false,
+        }
+      ],
       "cmd-backspace": "editor::DeleteToPreviousSubwordStart",
-      "cmd-m": ["editor::MoveToBeginningOfLine", { "stop_at_soft_wraps": false, "stop_at_indent": true }],
-      "cmd-;": ["editor::ToggleComments", { "advance_downwards": true }],
+      "cmd-m": [
+        "editor::MoveToBeginningOfLine",
+        {
+          "stop_at_soft_wraps": false,
+          "stop_at_indent": true,
+        }
+      ],
+      "cmd-;": [
+        "editor::ToggleComments",
+        { "advance_downwards": true },
+      ],
       "ctrl-x h": "editor::SelectAll",
     },
   },
   {
     "context": "(Editor && selection_mode)",
     "bindings": {
-      "alt-down": "editor::SelectToEndOfParagraph",
-      "alt-up": "editor::SelectToStartOfParagraph",
-      "alt-right": "editor::SelectToNextSubwordEnd",
-      "alt-left": "editor::SelectToPreviousSubwordStart",
+      "ctrl-p": "editor::SelectUp",
+      "ctrl-n": "editor::SelectDown",
+      "ctrl-b": "editor::SelectLeft",
+      "ctrl-f": "editor::SelectRight",
+      "ctrl-cmd-p": "editor::SelectToStartOfParagraph",
+      "ctrl-cmd-n": "editor::SelectToEndOfParagraph",
+      "ctrl-cmd-f": "editor::SelectToNextSubwordEnd",
+      "ctrl-cmd-b": "editor::SelectToPreviousSubwordStart",
+      "ctrl-e": "editor::SelectToEndOfLine",
+      "ctrl-a": [
+        "editor::SelectToBeginningOfLine",
+        {
+          "stop_at_soft_wraps": false,
+          "stop_at_indent": false
+        }
+      ],
+      "cmd-m": [
+        "editor::SelectToBeginningOfLine",
+        {
+          "stop_at_soft_wraps": false,
+          "stop_at_indent": true
+        }
+      ]
     },
   },
   {
@@ -38,10 +82,14 @@
     },
   },
   {
-    "context": "Workspace",
+    "context": "Editor && showing_completions",
     "bindings": {
-      "cmd-t": "terminal_panel::Toggle",
-    },
+      "tab": "editor::ContextMenuNext",
+      "shift-tab": "editor::ContextMenuPrevious",
+      "ctrl-n": "editor::ContextMenuNext",
+      "ctrl-p": "editor::ContextMenuPrevious",
+      "enter": "editor::ConfirmCompletion"
+    }
   },
   {
     "context": "ProjectPanel",
@@ -49,7 +97,7 @@
       "enter": "project_panel::Rename",
     },
     "bindings": {
-      "enter": ["workspace::SendKeystrokes", "space cmd-b"],
+      "enter": ["workspace::SendKeystrokes", "space cmd-0"],
     },
   },
   {
@@ -74,11 +122,11 @@
   {
     "context": "Workspace",
     "bindings": {
-      "cmd-x": "command_palette::Toggle",
+      "cmd-t": "terminal_panel::Toggle",
       "ctrl-x ctrl-s": "workspace::Save",
       "ctrl-x b": "file_finder::Toggle",
       "ctrl-x o": "workspace::ActivateNextPane",
-      "ctrl-x 4 0": "pane::JoinIntoNext",
+      "ctrl-x 0": "pane::JoinIntoNext",
     },
   },
   {

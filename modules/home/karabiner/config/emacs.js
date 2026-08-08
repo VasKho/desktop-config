@@ -33,8 +33,14 @@ module.exports = gen.build({
     },
 
     {
-      from: { code: "d", mMods: ["control"], oMods: ["command"] },
+      from: { code: "d", mMods: ["control"] },
       to: [gen.key({ code: "delete_forward" })],
+      conditions: [gen.unlessApps(terminalApp)],
+      to_after_key_up: [gen.clearVar("control-spacebar")],
+    },
+    {
+      from: { code: "d", mMods: ["control", "command"] },
+      to: [gen.key({ code: "option-delete_forward" })],
       conditions: [gen.unlessApps(terminalApp)],
       to_after_key_up: [gen.clearVar("control-spacebar")],
     },

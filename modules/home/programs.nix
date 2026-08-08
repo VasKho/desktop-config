@@ -42,5 +42,7 @@
     ripgrep.enable = true;
     ripgrep-all.enable = true;
     fastfetch.enable = true;
+
+    man.generateCaches = false;
   };
 }

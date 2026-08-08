@@ -1,5 +1,5 @@
 const gen = new (require("./generator.js"))();
-let excludeApps = ["com.mitchellh.ghostty"];
+let excludeApps = ["com.mitchellh.ghostty", "dev.zed.Zed"];
 
 module.exports = gen.build({
   description: "Emacs-style navigation",
