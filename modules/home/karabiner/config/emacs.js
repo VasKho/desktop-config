@@ -1,5 +1,6 @@
 const gen = new (require("./generator.js"))();
 let excludeApps = ["Emacs", "com.mitchellh.ghostty", "dev.zed.Zed", "com.microsoft.rdc.macos"];
+let terminalApp = ["com.mitchellh.ghostty"];
 
 module.exports = gen.build({
   description: "Emacs-style actions",
@@ -34,6 +35,7 @@ module.exports = gen.build({
     {
       from: { code: "d", mMods: ["control"], oMods: ["command"] },
       to: [gen.key({ code: "delete_forward" })],
+      conditions: [gen.unlessApps(terminalApp)],
       to_after_key_up: [gen.clearVar("control-spacebar")],
     },
     {

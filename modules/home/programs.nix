@@ -1,11 +1,10 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   home.packages = with pkgs; [
-    home-manager
     android-tools
     typst
     tinymist
-    vlc-bin
+    mpv-unwrapped
+    kubectl
   ];
 
   programs = {
@@ -37,12 +36,6 @@
         vim.o.expandtab = true
         vim.o.clipboard = "unnamedplus"
       '';
-    };
-
-    direnv = {
-      enable = true;
-      enableFishIntegration = true;
-      nix-direnv.enable = true;
     };
 
     jq.enable = true;

@@ -26,7 +26,6 @@ let conf = {
           require("./emacs.js"),
           require("./window.js"),
           require("./actions.js"),
-          require("./power.js"),
         ],
       },
     },

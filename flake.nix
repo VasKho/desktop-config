@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixd.url = "github:nix-community/nixd";
 
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/master";
@@ -22,47 +21,19 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nixd, home-manager, zen-browser, ... }:
-    let
-      host = {
-        name = "Vasilis-MacBook-Pro";
-        arch = "aarch64-darwin";
-        username = "vaslch0";
-        homeDirectory = "/Users/vaslch0";
-        shell = "fish";
-      };
-
-      baseDarwinConfig = host: { ... }:
-        {
-          nixpkgs.hostPlatform = host.arch;
-          nixpkgs.config.allowUnfree = true;
-
-          system.stateVersion = 6;
-          system.primaryUser = host.username;
-
-          nix.settings.experimental-features = "nix-command flakes";
-          programs.fish.enable = true;
-
-          system.configurationRevision = self.rev or self.dirtyRev or null;
-        };
-    in {
-      darwinConfigurations."${host.name}" = nix-darwin.lib.darwinSystem {
-        specialArgs = { inherit zen-browser; };
-        modules = [
-          (baseDarwinConfig host)
-
-          ./modules/system/default.nix
-
-          home-manager.darwinModules.home-manager {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              verbose = true;
-              extraSpecialArgs = { inherit host; inherit inputs; };
-              users.${host.username} = import ./modules/home/default.nix;
-            };
-          }
-        ];
-      };
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }: {
+    darwinConfigurations."m1-pro" = nix-darwin.lib.darwinSystem {
+      modules = [ ./hosts/m1-pro/configuration.nix ];
+      specialArgs = { inherit self; };
     };
+
+    homeConfigurations."vaslch0" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+      modules = [
+        inputs.zen-browser.homeModules.beta
+        ./home/vaslch0/home.nix
+      ];
+      extraSpecialArgs = { inherit self; };
+    };
+  };
 }

@@ -1,17 +1,4 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    fish
-    raycast
-    mousecape
-    wget
-    docker
-    docker-compose
-    colima
-    nixd
-    llama-cpp
-  ];
-
   homebrew = {
     enable = true;
     enableFishIntegration = true;
@@ -27,7 +14,7 @@
       "telegram"
       "karabiner-elements"
       "zed"
-      "transmission"
+      "folx"
       "instant-space-switcher"
     ];
   };

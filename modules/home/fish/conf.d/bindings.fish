@@ -14,18 +14,18 @@ function fish_custom_key_bindings -d "Custom keybindings"
     bind right 'forward-char'
 
     bind ctrl-left 'backward-word'
-    bind alt-left 'backward-word'
-    bind alt-b 'backward-word'
+    bind super-left 'backward-word'
+    bind ctrl-super-b 'backward-word'
     bind ctrl-right 'forward-word'
-    bind alt-left 'forward-word'
-    bind alt-f 'forward-word'
+    bind super-left 'forward-word'
+    bind ctrl-super-f 'forward-word'
 
     bind backspace 'kill_char_or_region'
     bind ctrl-d 'delete-char'
 
     bind alt-backspace 'backward-kill-word'
     bind alt-backspace 'backward-kill-path-component'
-    bind alt-d 'kill-word'
+    bind ctrl-super-d 'kill-word'
     bind ctrl-k 'kill-line'
 
     bind ctrl-a 'beginning-of-line'
@@ -41,14 +41,14 @@ function fish_custom_key_bindings -d "Custom keybindings"
     bind down 'down-or-search'
     bind ctrl-n 'down-or-search'
     bind ctrl-/ 'undo'
-    bind alt-/ 'redo'
+    bind ctrl-super-/ 'redo'
 
     bind ctrl-space 'begin-selection'
     bind ctrl-g 'end-selection' 'cancel'
     bind ctrl-x,ctrl-x 'swap-selection-start-stop'
 
     bind ctrl-y 'fish_clipboard_paste'
-    bind alt-w 'fish_clipboard_copy'
+    bind super-w 'fish_clipboard_copy'
     bind ctrl-x,ctrl-e 'edit_command_buffer'
     bind tab 'complete'
 

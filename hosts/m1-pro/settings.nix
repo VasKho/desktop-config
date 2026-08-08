@@ -1,5 +1,3 @@
-{ pkgs, zen-browser, ... }:
-
 {
   system = {
     activationScripts.activateSettings.text = ''
@@ -23,7 +21,7 @@
       show-recents = false;
       tilesize = 59;
       persistent-apps = [
-        "${zen-browser.packages.${pkgs.system}.default}/Applications/Zen Browser (Beta).app"
+        "/Users/vaslch0/Applications/Home Manager Apps/Zen Browser (Beta).app"
         "/Applications/Zed.app"
         "/Applications/Telegram.app"
       ];

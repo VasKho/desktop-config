@@ -82,4 +82,14 @@
       "tab_size": 4,
     },
   },
+  "auto_install_extensions": {
+    "html": true,
+    "dockerfile": true,
+    "docker-compose": true,
+    "nix": true,
+    "d2": true,
+    "vue": true,
+    "fish": true,
+    "rust": true,
+  }
 }

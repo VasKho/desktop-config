@@ -1,5 +1,3 @@
-{ ... }:
-
 {
   system.activationScripts.loginItems.text = ''
     osascript -e 'tell application "System Events" to if exists login item "Raycast" then delete login item "Raycast"'
