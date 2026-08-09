@@ -49,7 +49,7 @@
       macos-secure-input-indication = true;
 
       keybind = [
-        "alt+key_w=copy_to_clipboard"
+        "cmd+key_w=copy_to_clipboard"
         "ctrl+key_y=paste_from_clipboard"
         "ctrl+key_x>ctrl+key_c=quit"
         "ctrl+key_x>3=new_split:right"

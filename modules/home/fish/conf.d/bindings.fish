@@ -23,8 +23,8 @@ function fish_custom_key_bindings -d "Custom keybindings"
     bind backspace 'kill_char_or_region'
     bind ctrl-d 'delete-char'
 
-    bind alt-backspace 'backward-kill-word'
-    bind alt-backspace 'backward-kill-path-component'
+    bind super-backspace 'backward-kill-word'
+    bind super-backspace 'backward-kill-path-component'
     bind ctrl-super-d 'kill-word'
     bind ctrl-k 'kill-line'
 

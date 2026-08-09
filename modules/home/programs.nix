@@ -5,6 +5,8 @@
     tinymist
     mpv-unwrapped
     kubectl
+    k9s
+    kubernetes-helm
   ];
 
   programs = {

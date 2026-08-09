@@ -47,6 +47,7 @@ module.exports = gen.build({
     {
       from: { code: "delete_or_backspace", mMods: ["command"] },
       to: [gen.key({ code: "option-delete_or_backspace" })],
+      conditions: [gen.unlessApps(terminalApp)],
       to_after_key_up: [gen.clearVar("control-spacebar")],
     },
 
@@ -58,19 +59,28 @@ module.exports = gen.build({
     {
       from: { code: "w", mMods: ["control"] },
       to: [gen.key({ code: "command-c" }), gen.key({ code: "delete_or_backspace" }), gen.clearVar("control-spacebar")],
+      conditions: [gen.unlessApps(terminalApp)],
     },
     {
       from: { code: "y", mMods: ["control"] },
       to: [gen.key({ code: "command-v" }), gen.clearVar("control-spacebar")],
+      conditions: [gen.unlessApps(terminalApp)],
     },
     {
       from: { code: "w", mMods: ["command"] },
       to: [gen.key({ code: "command-c" }), gen.clearVar("control-spacebar")],
+      conditions: [gen.unlessApps(terminalApp)],
     },
 
     {
-      from: { code: "slash", mMods: ["control"], oMods: ["shift"] },
+      from: { code: "slash", mMods: ["control"] },
       to: [gen.key({ code: "command-z" })],
+      conditions: [gen.unlessApps(terminalApp)],
+    },
+    {
+      from: { code: "slash", mMods: ["control", "command"] },
+      to: [gen.key({ code: "command-shift-z" })],
+      conditions: [gen.unlessApps(terminalApp)],
     },
   ],
 });
