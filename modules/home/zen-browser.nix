@@ -22,6 +22,8 @@ in {
       ExtensionSettings = lib.listToAttrs [
         (extension "uBlock0@raymondhill.net")
         (extension "simple-translate@sienori")
+        (extension "jid1-MnnxcxisBPnSXQ@jetpack")
+        (extension "{7e79d10d-9667-4d38-838d-471281c568c3}")
       ];
     };
 
@@ -147,6 +149,34 @@ in {
               "translateSelectedText"
               "translatePage"
             ];
+          };
+        };
+        "{7e79d10d-9667-4d38-838d-471281c568c3}".settings = {
+          state = builtins.toJSON {
+            expressions = [
+              {
+                expression = "addons.mozilla.org*";
+                id = "ByLx0b8IGe";
+                regExp = "^addons\\.mozilla\\.org.*$";
+              }
+              {
+                expression = "chat.deepseek.com*";
+                id = "HJAR6-U8Mg";
+                regExp = "^chat\\.deepseek\\.com.*$";
+              }
+              {
+                expression = "search.nixos.org*";
+                id = "SJKaaZUIfl";
+                regExp = "^search\\.nixos\\.org.*$";
+              }
+            ];
+            historyDeletedCounterTotal = 0;
+            settings = {
+              keepHistory = { name = "keepHistory"; value = false; id = 1; };
+              daysToKeep = { name = "daysToKeep"; value = 60; id = 2; };
+              statLogging = { name = "statLogging"; id = "B1GKVGU8fe"; value = false; };
+              showVisitsInIcon = { name = "showVisitsInIcon"; value = false; id = 4; };
+            };
           };
         };
       };
