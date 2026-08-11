@@ -28,7 +28,7 @@
     networkmanager.enable = true;
   };
 
-  users.users.vaslch0 = {
+  users.users."vaslch0" = {
     isNormalUser = true;
     shell = pkgs.fish;
     extraGroups = [
