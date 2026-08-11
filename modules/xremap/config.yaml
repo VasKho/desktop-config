@@ -1,0 +1,55 @@
+modmap:
+  - remap:
+      CapsLock:
+          held: Control_L
+          alone: CapsLock
+          hold_threshold_millis : 10
+
+keymap:
+  - name: "Navigation"
+    application:
+      not: [ "dev.zed.Zed", "com.mitchellh.ghostty" ]
+    exact_match: true
+    remap:
+      C-b: { with_mark: "left" }
+      C-f: { with_mark: "right" }
+      C-n: { with_mark: "down" }
+      C-p: { with_mark: "up" }
+      C-M-b: { with_mark: "C-left" }
+      C-M-f: { with_mark: "C-right" }
+      C-M-n: { with_mark: "C-down" }
+      C-M-p: { with_mark: "C-up" }
+      C-a: { with_mark: "home" }
+      C-e: { with_mark: "end" }
+      C-d: [ "delete", { set_mark: false } ]
+      C-M-d: [ "C-delete", { set_mark: false } ]
+      C-k: [ "Shift-end", "backspace", { set_mark: false } ]
+      M-backspace: [ "C-backspace", {set_mark: false} ]
+      C-slash: "C-z"
+      C-M-slash: "C-shift-z"
+      C-space: { set_mark: true }
+      esc: [ "esc", { set_mark: false } ]
+      C-w: [ "C-x", { set_mark: false } ]
+      M-w: [ "C-c", { set_mark: false } ]
+      C-y: [ "C-v", { set_mark: false } ]
+      C-x:
+        remap:
+          k: "c-f4"
+          h: [ "C-a", { set_mark: true } ]
+          C-c: "super-shift-q"
+          C-f: "C-o"
+          C-s: "C-s"
+
+  - name: "Global actions"
+    remap:
+      f3: { launch: [ "/home/vaslch0/.config/xremap/overview_toggle.sh" ] }
+      super-enter: { launch: [ "ghostty" ] }
+      super-x: { launch: [ "vicinae", "open" ] }
+      super-p: { launch: [ "vicinae", "vicinae://launch/clipboard/history" ] }
+
+  - name: "Window management"
+    remap:
+      C-M-w:
+        remap:
+          f: Super-up
+          r: Super-down

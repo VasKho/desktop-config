@@ -1,5 +1,5 @@
 {
-  description = "vaslch0's nix-darwin system flake";
+  description = "vaslch0's nix config flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -13,6 +13,8 @@
 			url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    xremap.url = "github:xremap/nix-flake";
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
