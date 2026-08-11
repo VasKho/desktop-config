@@ -1,6 +1,6 @@
 { self, config, pkgs, lib, ... }: {
   xdg.dataFile."wallpapers" = {
-    source = self + "/wallpapers";
+    source = "${self}/wallpapers";
     recursive = true;
   };
 
