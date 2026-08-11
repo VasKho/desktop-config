@@ -71,8 +71,8 @@
       };
       session = { trust_all_worktrees = true; };
       base_keymap = "VSCode";
-      ui_font_size = 19.0;
-      buffer_font_size = 19.0;
+      ui_font_size = 17.0;
+      buffer_font_size = 17.0;
       theme = {
         mode = "light";
         light = "pink-rose";

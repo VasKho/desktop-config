@@ -2,6 +2,11 @@
   imports = [ ./default.nix ];
 
   programs.zed-editor = {
+    userSettings = {
+      ui_font_size = 19.0;
+      buffer_font_size = 19.0;
+    }
+
     userKeymaps = [
       {
         bindings = {
