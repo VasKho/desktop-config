@@ -66,5 +66,8 @@
     "${self}/modules/git.nix"
     "${self}/modules/ssh.nix"
     "${self}/modules/neovim.nix"
+    "${self}/modules/vicinae.nix"
+    "${self}/modules/librewolf.nix"
+    "${self}/modules/gnome.nix"
   ];
 }
