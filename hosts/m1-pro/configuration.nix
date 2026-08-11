@@ -18,6 +18,8 @@ in {
     auto-optimise-store = true;
   };
 
+  networking.hostName = "m1-pro";
+
   users.users."${user}" = {
     home = "/Users/${user}";
     shell = pkgs.fish;

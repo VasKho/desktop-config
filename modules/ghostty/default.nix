@@ -1,9 +1,8 @@
-{ pkgs, ... }: {
+{
   programs.ghostty = {
     enable = true;
     clearDefaultKeybinds = true;
     enableFishIntegration = true;
-    package = pkgs.ghostty-bin;
 
     themes = {
       pink-rose = {
@@ -45,11 +44,9 @@
       clipboard-read = "allow";
       clipboard-write = "allow";
       shell-integration-features = "no-cursor,ssh-terminfo,ssh-env";
-      macos-auto-secure-input = true;
-      macos-secure-input-indication = true;
 
       keybind = [
-        "cmd+key_w=copy_to_clipboard"
+        "alt+key_w=copy_to_clipboard"
         "ctrl+key_y=paste_from_clipboard"
         "ctrl+key_x>ctrl+key_c=quit"
         "ctrl+key_x>3=new_split:right"

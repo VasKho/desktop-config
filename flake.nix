@@ -1,5 +1,5 @@
 {
-  description = "vaslch0's nix-darwin system flake";
+  description = "vaslch0's nix config flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -19,19 +19,37 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    vicinae.url = "github:vicinaehq/vicinae";
+    xremap.url = "github:xremap/nix-flake";
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }: {
+    nixosConfigurations."home-desktop" = nixpkgs.lib.nixosSystem {
+      modules = [ ./hosts/home-desktop/configuration.nix ];
+      specialArgs = { inherit inputs; };
+    };
+
     darwinConfigurations."m1-pro" = nix-darwin.lib.darwinSystem {
       modules = [ ./hosts/m1-pro/configuration.nix ];
       specialArgs = { inherit self; };
     };
 
-    homeConfigurations."vaslch0" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."vaslch0@home-desktop" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      extraSpecialArgs = { inherit self; inherit inputs; };
+      modules = [
+        inputs.vicinae.homeManagerModules.default
+        inputs.xremap.homeManagerModules.default
+        ./hosts/home-desktop/home.nix
+      ];
+    };
+
+    homeConfigurations."vaslch0@m1-pro" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages."aarch64-darwin";
       modules = [
         inputs.zen-browser.homeModules.beta
-        ./home/vaslch0/home.nix
+        ./hosts/m1-pro/home.nix
       ];
       extraSpecialArgs = { inherit self; };
     };
