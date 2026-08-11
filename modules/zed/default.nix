@@ -75,8 +75,8 @@
       buffer_font_size = 17.0;
       theme = {
         mode = "light";
-        light = "pink-rose";
-        dark = "pink-rose";
+        light = "rose";
+        dark = "rose";
       };
       file_scan_exclusions = [".git" "target/"];
       languages = {

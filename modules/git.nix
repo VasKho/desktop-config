@@ -10,13 +10,13 @@
     includes = [
       {
         condition = "hasconfig:remote.*.url:*gitlab.com*/**";
-        path = "~/.config/git/gitlab"
+        path = "~/.config/git/gitlab";
       }
       {
         condition = "hasconfig:remote.*.url:*github.com*/**";
-        path = "~/.config/git/github"
+        path = "~/.config/git/github";
       }
-    ]
+    ];
   };
 
   xdg.configFile = {

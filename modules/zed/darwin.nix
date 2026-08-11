@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ lib, ... }: {
   imports = [ ./default.nix ];
 
   programs.zed-editor = {

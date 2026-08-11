@@ -1,11 +1,11 @@
-{ pkgs, lib, ... }: {
+{ lib, ... }: {
   imports = [ ./default.nix ];
 
   programs.zed-editor = {
     userSettings = {
-      ui_font_size = 19.0;
-      buffer_font_size = 19.0;
-    }
+      ui_font_size = lib.mkForce 19.0;
+      buffer_font_size = lib.mkForce 19.0;
+    };
 
     userKeymaps = [
       {
@@ -24,7 +24,7 @@
           "alt-w" = "editor::Copy";
           "ctrl-w" = "editor::Cut";
           "ctrl-y" = "editor::Paste";
-          "alt-d" = "editor::Delete";
+          "ctrl-d" = "editor::Delete";
           "ctrl-alt-d" = "editor::DeleteToNextSubwordEnd";
           "ctrl-p" = "editor::MoveUp";
           "ctrl-n" = "editor::MoveDown";

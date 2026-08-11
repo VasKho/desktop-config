@@ -84,6 +84,7 @@
         blur-my-shell.extensionUuid
       ];
       favorite-apps = [
+        "librewolf.desktop"
         "zen-beta.desktop"
         "nemo.desktop"
         "writer.desktop"
