@@ -12,6 +12,7 @@
       kubectl
       k9s
       kubernetes-helm
+      (pkgs.callPackage "${self}/pkgs/harbor.nix" { })
     ];
   };
 
