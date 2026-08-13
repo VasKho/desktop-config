@@ -1,4 +1,4 @@
-{
+{ config, ... }: {
   system = {
     activationScripts.activateSettings.text = ''
       # Following line should allow us to avoid a logout/login cycle
@@ -21,7 +21,7 @@
       show-recents = false;
       tilesize = 59;
       persistent-apps = [
-        "/Users/vaslch0/Applications/Home Manager Apps/Zen Browser (Beta).app"
+        "/Users/${config.system.primaryUser}/Applications/Home Manager Apps/Zen Browser (Beta).app"
         "/Applications/Zed.app"
         "/Applications/Telegram.app"
       ];
