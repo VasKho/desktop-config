@@ -1,8 +1,8 @@
-{ self, config, pkgs, ... }: {
+{ self, pkgs, ... }: {
   services.xremap = {
     enable = true;
-    package = pkgs.callPackage "${self}/pkgs/xremap-gnome.nix" { };
-    withGnome = true;
+    package = pkgs.callPackage "${self}/pkgs/xremap-niri.nix" { };
+    withNiri = true;
     config = {
       modmap = [
         {
@@ -53,7 +53,6 @@
         {
           name = "Global actions";
           remap = {
-            f3 = { launch = [ "${config.xdg.configHome}/xremap/overview_toggle.sh" ]; };
             super-enter = { launch = [ "ghostty" ]; };
             super-x = { launch = [ "vicinae" "open" ]; };
             super-p = { launch = [ "vicinae" "vicinae://launch/clipboard/history" ]; };
@@ -70,9 +69,5 @@
         }
       ];
     };
-  };
-
-  xdg.configFile = {
-    "xremap/overview_toggle.sh".source = ./overview_toggle.sh;
   };
 }

@@ -62,14 +62,20 @@
   };
 
   services = {
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-    gnome.core-apps.enable = false;
-    gnome.core-developer-tools.enable = false;
-    gnome.games.enable = false;
+    displayManager = {
+      gdm.enable = true;
+      defaultSession = "niri";
+      sessionPackages = [ pkgs.niri ];
+    };
+    # displayManager.defaultSession = "";
+    # desktopManager.gnome.enable = true;
+    # gnome.core-apps.enable = false;
+    # gnome.core-developer-tools.enable = false;
+    # gnome.games.enable = false;
     xserver.videoDrivers = [ "nvidia" ];
 
     dbus.implementation = "broker";
+    gvfs.enable = true;
     # avahi.enable = false;
     # geoclue2.enable = false;
     # udisks2.enable = lib.mkForce false;
@@ -110,9 +116,8 @@
     KERNEL=="uinput", GROUP="input", TAG+="uaccess"
     '';
   };
-
   environment = {
-    gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
+    # gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
 
     systemPackages = with pkgs; [
       fzf
@@ -143,6 +148,7 @@
       enableSudoAlias = true;
     };
 
+    pam.services.login.enableGnomeKeyring = true;
     protectKernelImage = true;
     forcePageTableIsolation = true;
     allowSimultaneousMultithreading = true;

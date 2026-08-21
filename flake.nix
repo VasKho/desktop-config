@@ -20,6 +20,11 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     vicinae.url = "github:vicinaehq/vicinae";
     xremap.url = "github:xremap/nix-flake";
   };
@@ -39,6 +44,7 @@
       pkgs = nixpkgs.legacyPackages."x86_64-linux";
       extraSpecialArgs = { inherit self; inherit inputs; };
       modules = [
+        inputs.niri.homeModules.niri
         inputs.vicinae.homeManagerModules.default
         inputs.xremap.homeManagerModules.default
         ./hosts/home-desktop/home.nix

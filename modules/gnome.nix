@@ -10,7 +10,7 @@
       xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk
     ];
-    config.gnome = {
+    config.common = {
       default = [ "gnome" ];
       "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
     };

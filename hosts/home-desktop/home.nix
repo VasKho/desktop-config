@@ -15,13 +15,15 @@
     libreoffice
     inkscape
     mpv
-    gnome-tweaks
-    gnome-themes-extra
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.vicinae
-    gnomeExtensions.xremap
-    gnomeExtensions.user-themes
-    gnomeExtensions.blur-my-shell
+    swaybg
+    # gnome-tweaks
+    # gnome-themes-extra
+    # gnomeExtensions.dash-to-dock
+    # gnomeExtensions.vicinae
+    # gnomeExtensions.xremap
+    # gnomeExtensions.user-themes
+    # gnomeExtensions.blur-my-shell
+    (callPackage "${self}/pkgs/rudo-bin.nix" {})
   ];
 
   programs = {
@@ -31,7 +33,12 @@
     fastfetch.enable = true;
   };
 
-  services.gnome-keyring.enable = true;
+  services = {
+    gnome-keyring.enable = true;
+    playerctld.enable = true;
+    mako.enable = true;
+    network-manager-applet.enable = true;
+  };
 
   gtk = {
     enable = true;
@@ -60,7 +67,9 @@
 
   imports = [
     "${self}/modules/zed/linux.nix"
+    "${self}/modules/eww/default.nix"
     "${self}/modules/fish/default.nix"
+    "${self}/modules/niri/default.nix"
     "${self}/modules/ghostty/linux.nix"
     "${self}/modules/xremap/default.nix"
     "${self}/modules/git.nix"
