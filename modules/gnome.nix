@@ -10,11 +10,21 @@
       xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk
     ];
-    config.gnome = {
+    config.common = {
       default = [ "gnome" ];
       "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
     };
   };
+
+  home.packages = with pkgs; [
+    gnome-tweaks
+    gnome-themes-extra
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.vicinae
+    gnomeExtensions.xremap
+    gnomeExtensions.user-themes
+    gnomeExtensions.blur-my-shell
+  ];
 
   dconf.enable = true;
   dconf.settings = {

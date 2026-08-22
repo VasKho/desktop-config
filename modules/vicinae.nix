@@ -22,7 +22,7 @@
         };
       };
 
-      theme.dark.name = "gruvbox-dark";
+      theme.light.name = "zenwritten-light";
       telemetry.system_info = false;
 
       launcher_window = {

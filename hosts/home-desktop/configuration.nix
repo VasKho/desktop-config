@@ -16,10 +16,12 @@
     extra-substituters = [
       "https://vicinae.cachix.org"
       "https://nix-community.cachix.org"
+      "https://noctalia.cachix.org"
     ];
     extra-trusted-public-keys = [
       "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     ];
   };
 
@@ -62,14 +64,15 @@
   };
 
   services = {
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-    gnome.core-apps.enable = false;
-    gnome.core-developer-tools.enable = false;
-    gnome.games.enable = false;
+    displayManager = {
+      gdm.enable = true;
+      defaultSession = "niri";
+      sessionPackages = [ pkgs.niri ];
+    };
     xserver.videoDrivers = [ "nvidia" ];
 
     dbus.implementation = "broker";
+    gvfs.enable = true;
     # avahi.enable = false;
     # geoclue2.enable = false;
     # udisks2.enable = lib.mkForce false;
@@ -110,21 +113,16 @@
     KERNEL=="uinput", GROUP="input", TAG+="uaccess"
     '';
   };
-
-  environment = {
-    gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
-
-    systemPackages = with pkgs; [
-      fzf
-      btop
-      wireplumber
-      docker-compose
-      volantes-cursors
-      nixd
-      ghostty
-      home-manager
-    ];
-  };
+  environment.systemPackages = with pkgs; [
+    fzf
+    btop
+    wireplumber
+    docker-compose
+    volantes-cursors
+    nixd
+    ghostty
+    home-manager
+  ];
 
   virtualisation.docker = {
     enable = true;
@@ -143,6 +141,7 @@
       enableSudoAlias = true;
     };
 
+    pam.services.login.enableGnomeKeyring = true;
     protectKernelImage = true;
     forcePageTableIsolation = true;
     allowSimultaneousMultithreading = true;
