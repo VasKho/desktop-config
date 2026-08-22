@@ -16,6 +16,16 @@
     };
   };
 
+  home.packages = with pkgs; [
+    gnome-tweaks
+    gnome-themes-extra
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.vicinae
+    gnomeExtensions.xremap
+    gnomeExtensions.user-themes
+    gnomeExtensions.blur-my-shell
+  ];
+
   dconf.enable = true;
   dconf.settings = {
     "org/gnome/desktop/background" = {

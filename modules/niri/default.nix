@@ -1,14 +1,13 @@
-{ self, config, pkgs, ... }: {
+{ self, pkgs, ... }: {
+  imports = [ ./dconf.nix ];
+
   programs.niri = {
     enable = true;
     package = pkgs.niri;
 
     settings = {
       spawn-at-startup = [
-        { sh = "swaybg --image ${config.xdg.dataHome}/wallpapers/tree_landscape.jpg --mode fill"; }
-        { sh = "${config.xdg.configHome}/eww/bin/eventlistener-rs"; }
-        { sh = "eww open bar"; }
-        { sh = "eww open dock"; }
+        { sh = "noctalia"; }
       ];
 
       hotkey-overlay.skip-at-startup = true;
@@ -30,6 +29,7 @@
 
       layout = {
         gaps = 3;
+        background-color = "transparent";
         focus-ring.enable = false;
         border.enable = false;
         shadow = {
@@ -41,6 +41,13 @@
         };
       };
 
+      layer-rules = [
+        {
+          matches = [ { namespace = "^noctalia-wallpaper"; } ];
+          place-within-backdrop = true;
+        }
+      ];
+
       window-rules = [
         {
           matches = [ { app-id = "mpv"; } ];
@@ -51,6 +58,12 @@
           open-floating = true;
         }
         {
+          matches = [ { app-id = "dev.noctalia.Noctalia"; } ];
+          open-floating = true;
+          default-column-width.fixed = 1080;
+          default-window-height.fixed = 920;
+        }
+        {
           matches = [ { app-id = "nm-connection-editor"; } ];
           open-floating = true;
         }
@@ -59,49 +72,49 @@
       binds = {
         "Mod+Shift+Slash".action.show-hotkey-overlay = [];
 
-        "Super+Shift+L".action.spawn = [ "swaylock" ];
+        "Super+Shift+L".action.spawn = [ "noctalia" "msg" "session" "lock" ];
 
         "XF86AudioRaiseVolume" = {
           allow-when-locked = true;
-          action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+" "-l" "1.0" ];
+          action.spawn = [ "noctalia" "msg" "volume-up" ];
         };
         "XF86AudioLowerVolume" = {
           allow-when-locked = true;
-          action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-" "-l" "1.0" ];
+          action.spawn = [ "noctalia" "msg" "volume-down" ];
         };
         "XF86AudioMute" = {
           allow-when-locked = true;
-          action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "toggle" ];
+          action.spawn = [ "noctalia" "msg" "volume-mute" ];
         };
         "XF86AudioMicMute" = {
           allow-when-locked = true;
-          action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SOURCE@" "toggle" ];
+          action.spawn = [ "noctalia" "msg" "mic-mute" ];
         };
 
         "XF86MonBrightnessUp" = {
           allow-when-locked = true;
-          action.spawn = [ "brightnessctl" "--class=backlight" "set" "+10%" ];
+          action.spawn = [ "noctalia" "msg" "brightness-up" ];
         };
         "XF86MonBrightnessDown" = {
           allow-when-locked = true;
-          action.spawn = [ "brightnessctl" "--class=backlight" "set" "10%-" ];
+          action.spawn = [ "noctalia" "msg" "brightness-down" ];
         };
 
         "XF86AudioPlay" = {
           allow-when-locked = true;
-          action.spawn = [ "playerctl" "play-pause" ];
+          action.spawn = [ "noctalia" "msg" "media" "toggle" ];
         };
         "XF86AudioStop" = {
           allow-when-locked = true;
-          action.spawn = [ "playerctl" "stop" ];
+          action.spawn = [ "noctalia" "msg" "media" "stop" ];
         };
         "XF86AudioPrev" = {
           allow-when-locked = true;
-          action.spawn = [ "playerctl" "previous" ];
+          action.spawn = [ "noctalia" "msg" "media" "previous" ];
         };
         "XF86AudioNext" = {
           allow-when-locked = true;
-          action.spawn = [ "playerctl" "next" ];
+          action.spawn = [ "noctalia" "msg" "media" "next" ];
         };
 
         "f3" = { repeat = false; action.toggle-overview = []; };
@@ -109,8 +122,6 @@
         "Mod+Shift+Q" = { repeat = false; action.close-window = []; };
 
         "Mod+Left".action.focus-column-left = [];
-        "Mod+Down".action.focus-window-down = [];
-        "Mod+Up".action.focus-window-up = [];
         "Mod+Right".action.focus-column-right = [];
 
         "Mod+Ctrl+Left".action.move-column-left = [];
@@ -157,7 +168,7 @@
         "Mod+Ctrl+Shift+WheelScrollDown".action.move-column-right = [];
         "Mod+Ctrl+Shift+WheelScrollUp".action.move-column-left = [];
 
-        "Mod+F".action.maximize-column = [];
+        "Mod+Up".action.maximize-column = [];
         "Mod+M".action.maximize-window-to-edges = [];
 
         "Mod+V".action.toggle-window-floating = [];

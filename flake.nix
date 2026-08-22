@@ -25,6 +25,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
     vicinae.url = "github:vicinaehq/vicinae";
     xremap.url = "github:xremap/nix-flake";
   };
@@ -45,6 +46,7 @@
       extraSpecialArgs = { inherit self; inherit inputs; };
       modules = [
         inputs.niri.homeModules.niri
+        inputs.noctalia.homeModules.default
         inputs.vicinae.homeManagerModules.default
         inputs.xremap.homeManagerModules.default
         ./hosts/home-desktop/home.nix

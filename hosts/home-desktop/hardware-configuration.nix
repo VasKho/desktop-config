@@ -70,7 +70,7 @@
 
   hardware = {
     graphics.enable = true;
-    bluetooth.enable = false;
+    bluetooth.enable = true;
     uinput.enable = true;
 
     cpu.amd = {
